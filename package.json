@@ -1,0 +1,31 @@
+{
+    "name": "blog2",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "jsonwebtoken": "^8.5.1",
+        "marked": "^0.6.2",
+        "mongodb": "^3.2.6",
+        "mongoose": "^5.5.11",
+        "request": "^2.88.0",
+        "validator": "^10.11.0",
+        "nodemon": "^1.19.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "dev": "nodemon app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AaronKwong929/blog-2.0.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/AaronKwong929/blog-2.0/issues"
+    },
+    "homepage": "https://github.com/AaronKwong929/blog-2.0#readme"
+}
