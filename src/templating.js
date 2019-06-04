@@ -4,8 +4,8 @@ const createEnv = function(path, opts) {
     const autoescape = opts.autoescape === undefined ? true : opts.autoescape;
     const noCache = opts.noCache === undefined ? true : opts.noCache;
     const watch = opts.watch === undefined ? true : opts.watch;
-    const throwOnUndefiend =
-        opts.throwOnUndefiend === undefined ? true : opts.throwOnUndefiend;
+    const throwOnUndefined =
+        opts.throwOnUndefined === undefined ? true : opts.throwOnUndefined;
 
     const env = new nunjucks.Environment(
         new nunjucks.FileSystemLoader(path, {
@@ -22,6 +22,7 @@ const createEnv = function(path, opts) {
             env.addFilter(f, opts.filters[f]);
         }
     }
+    return env;
 };
 
 const templating = (path, opts) => {
