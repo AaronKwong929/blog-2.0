@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const addMapping = (router, mapping) => {
     for (var url in mapping) {
         if (url.startsWith('GET')) {
@@ -22,18 +23,26 @@ const addMapping = (router, mapping) => {
 };
 
 const addControllers = (router, dir) => {
-    var files = fs.readdirSync(__dirname + '/' + dir);
-    var js_files = files.filter(f => f.endsWith('.js'));
-    for (f of js_files) {
-        console.log(`processing controller: ${f}`);
-        let mapping = require(__dirname + '/controllers/' + f);
-        addMapping(router, mapping);
-    }
+    // 取上级目录
+    const srcPath = path.resolve(__dirname, '..');
+    // 取controllers目录
+    const controllersPath = path.join(srcPath, dir);
+    fs.readdir(controllersPath, (err, files) => {
+        if (err) {
+            return err;
+        }
+        var js_files = files.filter(f => f.endsWith('.js'));
+        for (f of js_files) {
+            console.log(`processing controller: ${f}`);
+            let mapping = require(controllersPath + '/' + f);
+            addMapping(router, mapping);
+        }
+    });
 };
 
-module.exports = (dir) => {
-    let controllers_dir = dir || 'controllers';
-    let router = require('koa-router')();
+module.exports = dir => {
+    const controllers_dir = dir || 'controllers';
+    const router = require('koa-router')();
     addControllers(router, controllers_dir);
     return router.routes();
-}
+};
