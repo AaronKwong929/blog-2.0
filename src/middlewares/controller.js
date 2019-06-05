@@ -6,18 +6,20 @@ const addMapping = (router, mapping) => {
             var path = url.substring(4);
             router.get(path, mapping[url]);
             console.log(`registering URL mapping: GET ${path}`);
-        } else if (url.startsWith('PATCH')) {
+        } else if (url.startsWith('PUT')) {
             var path = url.substring(4);
-            router.patch(path, mapping[url]);
+            router.put(path, mapping[url]);
             console.log(`registering URL mapping: PATCH ${path}`);
         } else if (url.startsWith('DELETE')) {
             var path = url.substring(4);
-            router.delete(path, mapping[url]);
+            router.del(path, mapping[url]);
             console.log(`registering URL mapping: DELETE ${path}`);
         } else if (url.startsWith('POST')) {
             var path = url.substring(4);
             router.post(path, mapping[url]);
             console.log(`registering URL mapping: POST ${path}`);
+        } else {
+            console.log(`Invalid URL`);
         }
     }
 };
