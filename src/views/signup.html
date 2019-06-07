@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block main %}
+<form action="/signup" method="POST">
+    <p>
+        <input name="name" type="text" placeholder="Userame" />
+    </p>
+    <p>
+        <input name="email" type="text" placeholder="Email" />
+    </p>
+    <p>
+        <input name="password" type="password" placeholder="Password" />
+    </p>
+    <button type="submit" class="btn">
+        注册
+    </button>
+</form>
+{% endblock %}

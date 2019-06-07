@@ -1,15 +1,17 @@
 {% extends "base.html" %} {% block main %}
 <div class="container clearfix">
-        <div class="middle-container">
-            <div class="middle">
-                    1234
-            </div>
-        </div>
-        <div class="left-container">
-            <h1>指示色</h1>
-        </div>
-        <div class="right-container">
-            <h1>指示色</h1>
+    <div class="middle-container">
+        <div class="middle">
+            {% block sub %}
+                1234
+            {% endblock %}
         </div>
     </div>
+    <div class="left-container">
+        <h1>指示色</h1>
+    </div>
+    <div class="right-container">
+        <h1>指示色</h1>
+    </div>
+</div>
 {% endblock %}

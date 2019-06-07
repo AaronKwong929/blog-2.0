@@ -20,24 +20,27 @@
                 </div>
             </div>
         </div>
-        {% block main %} {% endblock %}
-        <footer class="clearfix">
-            <div class="footer-class">
-                &copy; 2019 AaronKwong929
-                <div class="social-links">
-                    <ul>
-                        <li>
-                            <a href="/" target="_blank">主页</a>
-                        </li>
-                        <li>
-                            <a href="#" target="_blank">微博</a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/AaronKwong929" target="_blank">GitHub</a>
-                        </li>
-                    </ul>
-                </div>
+        {% block main %} {% block sub %} {% endblock %} {% endblock %}
+
+        <div class="footer-class clearfix">
+            &copy; 2019 AaronKwong929
+            <div class="social-links">
+                <ul>
+                    <li>
+                        <a href="/" target="_blank">主页</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">微博</a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://github.com/AaronKwong929"
+                            target="_blank"
+                            >GitHub</a
+                        >
+                    </li>
+                </ul>
             </div>
-        </footer>
+        </div>
     </body>
 </html>
