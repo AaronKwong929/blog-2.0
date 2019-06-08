@@ -7,8 +7,8 @@ const controller = require('./src/middlewares/controller');
 const views = require('koa-views');
 const session = require('koa-session');
 const session_config = require('./src/configs/session');
-const isProduction = process.env.NODE_ENV === 'production';
 
+const isProduction = process.env.NODE_ENV === 'production';
 if (!isProduction) {
     const staticFiles = require('./src/middlewares/static-files');
     app.use(staticFiles('/src/statics/', __dirname + '/src/statics'));
@@ -31,12 +31,8 @@ app.use(async (ctx, next) => {
     await next();
 });
 
-
 app.use(controller());
 
-
 app.listen(3000, () => {
-    console.log(
-        `app started at port 3000 ${path.join(__dirname, 'src', 'views')}`
-    );
+    console.log(`app started at port 3000`);
 });
