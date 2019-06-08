@@ -1,0 +1,128 @@
+/**  全局  */
+* {
+    margin: 0;
+}
+
+/* 伪类清除浮动 */
+.clearfix::after {
+    display: block;
+    visibility: hidden;
+    content: '.';
+    clear: both;
+    height: 0;
+}
+
+/* 垂直居中模组 */
+.horizontal-vertical-centralize {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 列表/链接清除多余样式 */
+li {
+    float: left;
+    margin-right: 30px;
+    list-style: none;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited,
+a:link {
+    color: #fff;
+}
+
+/**  导航条  */
+.nav {
+    background: #24292e;
+    font-size: 20px;
+    padding: 10px 10px;
+    height: 40px;
+}
+
+.nav ul li {
+    padding-top: 5px;
+}
+
+.nav-right {
+    float: right;
+    margin-right: 30px;
+    padding-top: 5px;
+    color: #fff;
+}
+
+.nav-right p {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.nav-right a {
+    float: right;
+}
+
+/**  底部  */
+
+.footer-class {
+    background: #24292e;
+    height: 100px;
+    padding: 30px 100px;
+    color: #fff;
+}
+
+.social-links {
+    float: right;
+}
+
+/**  首页巨幕  */
+.jumbotron {
+    background: #336699;
+    height: 550px;
+}
+
+.tron-container {
+    width: 75%;
+    height: 65%;
+    text-align: center;
+}
+
+.title {
+    font-size: 100px;
+    font-weight: 100;
+    text-transform: uppercase;
+}
+
+.sub-title {
+    font-size: 60px;
+    font-weight: 200;
+}
+
+/**  双飞翼中部  */
+.middle-container {
+    width: 100%;
+    background: lightcoral;
+    float: left;
+}
+
+.middle {
+    margin: 0 320px;
+    background: lightgreen;
+}
+
+.left-container {
+    float: left;
+    background: lightblue;
+    width: 300px;
+    margin-left: -100%;
+}
+
+.right-container {
+    float: left;
+    background: lightblue;
+    width: 300px;
+    margin-left: -300px;
+}
