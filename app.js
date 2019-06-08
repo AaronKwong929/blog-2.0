@@ -1,9 +1,12 @@
 require('./src/db/mongoose');
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
+const path = require('path');
 const app = new Koa();
 const controller = require('./src/middlewares/controller');
-const templating = require('./src/middlewares/templating');
+const views = require('koa-views');
+const session = require('koa-session');
+const session_config = require('./src/configs/session');
 const isProduction = process.env.NODE_ENV === 'production';
 
 if (!isProduction) {
@@ -11,17 +14,29 @@ if (!isProduction) {
     app.use(staticFiles('/src/statics/', __dirname + '/src/statics'));
 }
 
+app.keys = ['yooooo'];
+
+app.use(session(session_config, app));
+
 app.use(bodyParser());
 
 app.use(
-    templating('./src/views', {
-        noCache: !isProduction,
-        watch: !isProduction
+    views(path.join(__dirname, 'src', 'views'), {
+        map: { html: 'nunjucks' }
     })
 );
 
+app.use(async (ctx, next) => {
+    ctx.state.user = ctx.session.user;
+    await next();
+});
+
+
 app.use(controller());
 
+
 app.listen(3000, () => {
-    console.log(`app started at port 3000`);
+    console.log(
+        `app started at port 3000 ${path.join(__dirname, 'src', 'views')}`
+    );
 });
