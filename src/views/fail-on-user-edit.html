@@ -1,4 +1,5 @@
 {% extends "src/views/base.html" %} {% block main %}
+<div class="alert">修改失败，请重试</div>
 <h1>修改个人信息</h1>
 <form action="/me/edit" method="POST">
     <input name="name" placeholder="{{ name }}" type="text" />
