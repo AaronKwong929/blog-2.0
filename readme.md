@@ -21,7 +21,8 @@
 13. ~~~controllers 文件夹里面的东西，分开存放，user，article，index~~~
 14. 个人信息界面
 15. ~~~实现登陆前导航条右侧登陆/注册，登陆后是“欢迎回来，xxx” 想法：1. toggle 2. 新建一个 block 用 if 判断~~~
-16. 实时检测邮箱是否注册完成，密码是否纯数字/小于 6 位 ->ajax?
+16. 实时检测邮箱是否注册完成，密码是否纯数字/小于 6 位 ->ajax?  
+17. 一个可以查看本站其他用户以及他们的头像？和？个人签名？
 
 ## 疑难点：
 
@@ -50,7 +51,7 @@ app.use(controller());
 
 ### 解决方法：base.html 对 css 的引用需要使用绝对路径
 
-1. 绝对路径：“绝对”意味着相对于 Web 服务器根目录。形式上，以 / 开头，比如
+1. 绝对路径：“绝对”意味着相对于 Web 服务器根目录。以 / 开头，比如
 
 ```html
 <img src="/web/images/example.jpg" />
@@ -61,7 +62,6 @@ app.use(controller());
 ```html
 <!--相对于本文件-->
 <img src="../images/example.jpg" />
-
 <!--指定一个base tag，并且结尾要有斜杠"/"来表示这是一个目录-->
 <!--head部分-->
 <base href="localhost:8080/web/" />
