@@ -1,7 +1,8 @@
 {% extends "src/views/base.html" %} {% block main %}
-<h1>{{ name }} 修改个人信息</h1>
+<h1>修改个人信息</h1>
 <form action="/edit" method="POST">
 <input name="name" placeholder= "{{ name }}" type="text">
-<input name="password" placeholder="{{ password }}" type="text">
+<input name="password" type="password">
 <button type="submit" class="btn">修改</button>
+<a href="/me" class="btn">返回</a>
 {% endblock %}
