@@ -3,10 +3,7 @@ const fn_index = async ctx => {
 };
 
 const fn_help = async ctx => {
-    if (!ctx.session.user) {
-        return await ctx.render('404');
-    }
-    await ctx.render('help.html');
+    await ctx.render('help');
 };
 
 const fn_about = async ctx => {

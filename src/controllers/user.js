@@ -18,11 +18,10 @@ const fn_signin = async ctx => {
             ctx.session.user = {
                 id: user._id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                password: user.password
             };
-            await ctx.render('profile', {
-                name: user.name
-            });
+            await ctx.redirect('/me');
         } catch (e) {
             await ctx.render('signin-failed');
         }
@@ -33,7 +32,6 @@ const fn_signup = async ctx => {
     if (ctx.method === 'GET') {
         await ctx.render('signup');
     } else if (ctx.method === 'POST') {
-        console.log(ctx.request.body);
         const user = new User(ctx.request.body);
         try {
             await user.save();
@@ -46,9 +44,46 @@ const fn_signup = async ctx => {
     }
 };
 
-const fn_logout = async (ctx, next) => {
+const fn_logout = async ctx => {
     ctx.session = null;
     ctx.redirect('/');
+};
+
+const fn_me = async ctx => {
+    const user = ctx.session.user;
+    await ctx.render('profile', {
+        name: user.name,
+        email: user.email,
+    });
+    
+};
+
+const fn_editUser = async ctx => {
+    // if (!ctx.session.user) {
+    //     return await ctx.render('needLogin');
+    // }
+    if (ctx.method === 'GET') {
+        const user = ctx.session.user;
+        await ctx.render('userEdit', {
+            name: user.name,
+            email: user.email,
+            password: user.password
+        });
+    } else if (ctx.method === 'POST') {
+        const user = ctx.session.user,
+        name = ctx.request.body.name,
+        email = user.email;
+        var password = ctx.request.body.password;
+        // password = await bcrypt.hash(password, 8);
+        const userEd = await User.findOneAndUpdate({ email }, {
+            name,
+            password,
+        });
+        if (!userEd) {
+            return await ctx.render('signin-failed');
+        }
+        return await ctx.redirect('/');
+    }
 }
 
 module.exports = {
@@ -56,5 +91,8 @@ module.exports = {
     'POST /signin': fn_signin,
     'GET /signup': fn_signup,
     'POST /signup': fn_signup,
-    'GET /logout': fn_logout
+    'GET /logout': fn_logout,
+    'GET /me': fn_me,
+    'GET /edit': fn_editUser,
+    'POST /edit': fn_editUser,
 };

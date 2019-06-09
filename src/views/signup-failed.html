@@ -1,16 +1,18 @@
 {% extends "src/views/base.html" %} {% block main %}
-<h1>login failed motherfucker</h1>
-<form action="/signin" method="POST">
+<div class="alert">输入错误，请重试</div>
+<form action="/signup" method="POST">
+    <p>
+        <input name="name" type="text" placeholder="Userame" />
+    </p>
     <p>
         <input name="email" type="text" placeholder="Email" />
     </p>
     <p>
         <input name="password" type="password" placeholder="Password" />
     </p>
-    <div class="container">
-        <button type="submit" class="btn">
-            登陆
-        </button>
-    </div>
+    <button type="submit" class="btn">
+        注册
+    </button>
+    <a href="/signin">点击此处进行登陆</a>
 </form>
 {% endblock %}

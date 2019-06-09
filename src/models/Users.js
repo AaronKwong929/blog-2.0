@@ -44,11 +44,11 @@ const userSchema = new mongoose.Schema({
     },
     createdAt: {
         type: String,
-        default: new Date().getTime(),
+        default: new Date().getTime()
     },
     updatedAt: {
         type: String,
-        default: new Date().getTime(),
+        default: new Date().getTime()
     }
 });
 
@@ -64,7 +64,18 @@ userSchema.pre('save', async function (next) {
     if (user.isModified('password')) {
         user.password = await bcrypt.hash(user.password, 8);
     }
+    const now = new Date().getTime();
+    if (user.updatedAt !== now) {
+        user.updatedAt = now;
+    }
     next();
 });
 
-module.exports  = mongoose.model('User', userSchema);
+userSchema.pre('findOneAndUpdate', async function (next) {
+    const user = this;
+    user.password = await bcrypt.hash(user.password, 8);
+    user.updatedAt = new Date().getTime();
+    next();
+});
+
+module.exports = mongoose.model('User', userSchema);

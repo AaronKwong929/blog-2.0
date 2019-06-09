@@ -37,6 +37,21 @@ a:link {
     color: #fff;
 }
 
+input {
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+
+.btn {
+}
+
+.alert {
+}
+
 /**  导航条  */
 .nav {
     background: #24292e;

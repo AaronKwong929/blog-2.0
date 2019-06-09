@@ -1,3 +1,7 @@
 {% extends "src/views/base.html" %} {% block main %}
-欢迎回来，{{ name }}
+<h1>欢迎回来，{{ name }}</h1>
+<a href="/articles/new" class="btn">新建文章</a>
+<a href="/articles" class="btn">查看文章</a>
+<a href="/edit" class="btn">修改个人信息</a>
+<a href="/logout" class="btn">注销</a>
 {% endblock %}
