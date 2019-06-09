@@ -74,10 +74,11 @@ const fn_editUser = async ctx => {
         name = ctx.request.body.name,
         email = user.email;
         var password = ctx.request.body.password;
-        // password = await bcrypt.hash(password, 8);
+        password = await bcrypt.hash(password, 8);
         const userEd = await User.findOneAndUpdate({ email }, {
             name,
             password,
+            updatedAt: new Date().getTime()
         });
         if (!userEd) {
             return await ctx.render('signin-failed');
