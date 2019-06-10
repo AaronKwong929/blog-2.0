@@ -1,7 +1,21 @@
 {% extends "src/views/base.html" %} {% block main %}
-<h1>欢迎回来，{{ name }}</h1>
-<a href="/articles/new" class="btn">新建文章</a>
-<a href="/articles" class="btn">查看文章</a>
-<a href="/me/edit" class="btn">修改个人信息</a>
-<a href="/logout" class="btn">注销</a>
+<div class="container clearfix">
+    <div class="middle-container">
+        <div class="middle">
+            {% block sub %}
+            <h1>欢迎回来，{{ name }}</h1>
+            <a href="/articles/new" class="btn">新建文章</a>
+            <a href="/articles" class="btn">查看文章</a>
+            <a href="/me/edit" class="btn">修改个人信息</a>
+            <a href="/logout" class="btn">注销</a>
+            {% endblock %}
+        </div>
+    </div>
+    <div class="left-container">
+        <h1>指示色</h1>
+    </div>
+    <div class="right-container">
+        <h1>指示色</h1>
+    </div>
+</div>
 {% endblock %}

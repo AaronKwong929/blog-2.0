@@ -1,3 +1,17 @@
 {% extends "src/views/base.html" %} {% block main %}
-404 Page not found
+<div class="container clearfix">
+    <div class="middle-container">
+        <div class="middle">
+            {% block sub %}
+            <h1>404 Page not found</h1>
+            {% endblock %}
+        </div>
+    </div>
+    <div class="left-container">
+        <h1>指示色</h1>
+    </div>
+    <div class="right-container">
+        <h1>指示色</h1>
+    </div>
+</div>
 {% endblock %}

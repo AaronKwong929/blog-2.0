@@ -1,9 +1,37 @@
 {% extends "src/views/base.html" %} {% block main %}
-<h1>修改个人信息</h1>
-<form action="/me/edit" method="POST">
-    <input name="name" placeholder="{{ name }}" type="text" />
-    <input name="password" type="password" placeholder="Password" />
-    <button type="submit" class="btn">修改</button>
-    <a href="/me" class="btn">返回</a>
-</form>
+<div class="container clearfix">
+    <div class="middle-container">
+        <div class="middle">
+            {% block sub %}
+            <h1>修改个人信息</h1>
+            <div>
+                <form action="/me/edit" method="POST">
+                    <p>
+                        <input
+                            name="name"
+                            placeholder="{{ name }}"
+                            type="text"
+                        />
+                    </p>
+                    <p>
+                        <input
+                            name="password"
+                            type="password"
+                            placeholder="Password"
+                        />
+                    </p>
+                    <button type="submit" class="btn">修改</button>
+                    <a href="/me" class="btn">返回</a>
+                </form>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+    <div class="left-container">
+        <h1>指示色</h1>
+    </div>
+    <div class="right-container">
+        <h1>指示色</h1>
+    </div>
+</div>
 {% endblock %}

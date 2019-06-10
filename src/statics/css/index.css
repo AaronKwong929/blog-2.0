@@ -43,13 +43,31 @@ input {
     font-weight: 300;
     text-decoration: none;
     border-radius: 5px;
+    outline-style: none;
+    margin: 10px 0;
+    width: 200px;
 }
 
-
 .btn {
+    background-color: lightgreen;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 30px;
 }
 
 .alert {
+}
+
+.text {
+    text-align: center;
+    margin: 0 auto;
 }
 
 /**  导航条  */
@@ -124,8 +142,9 @@ input {
 }
 
 .middle {
-    margin: 0 320px;
-    background: lightgreen;
+    margin: 0 300px;
+    background: gold;
+    text-align: center;
 }
 
 .left-container {
@@ -133,6 +152,7 @@ input {
     background: lightblue;
     width: 300px;
     margin-left: -100%;
+    text-align: center;
 }
 
 .right-container {
@@ -140,4 +160,5 @@ input {
     background: lightblue;
     width: 300px;
     margin-left: -300px;
+    text-align: center;
 }
