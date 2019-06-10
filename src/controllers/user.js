@@ -52,13 +52,20 @@ const fn_logout = async ctx => {
 };
 
 const fn_me = async ctx => {
-    const user = ctx.session.user;
-    await ctx.render('profile', {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        isAdmin: user.isAdmin
-    });
+    if (!ctx.session.user) {
+        await ctx.render('need-to-login');
+    }
+    try {
+        const user = ctx.session.user;
+        await ctx.render('profile', {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin
+        });
+    } catch (e) {
+        ctx.render('need-to-login');
+    }
 };
 
 const fn_editUser = async ctx => {
@@ -66,14 +73,14 @@ const fn_editUser = async ctx => {
         return await ctx.render('need-to-login');
     }
     const user = ctx.session.user;
-    try {
-        if (ctx.method === 'GET') {
-            //const user = ctx.session.user;
-            await ctx.render('userEdit', {
-                name: user.name,
-                email: user.email
-            });
-        } else if (ctx.method === 'POST') {
+
+    if (ctx.method === 'GET') {
+        await ctx.render('userEdit', {
+            name: user.name,
+            email: user.email
+        });
+    } else if (ctx.method === 'POST') {
+        try {
             const name = ctx.request.body.name,
                 email = user.email;
             var password = ctx.request.body.password;
@@ -110,9 +117,9 @@ const fn_editUser = async ctx => {
                 ctx.session.user.name = name;
             }
             return await ctx.redirect('/');
+        } catch (e) {
+            await ctx.render('fail-on-user-edit');
         }
-    } catch (e) {
-        await ctx.render('fail-on-user-edit');
     }
 };
 
