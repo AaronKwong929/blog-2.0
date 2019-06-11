@@ -1,0 +1,18 @@
+{% extends "src/views/base.html" %} {% block main %}
+<div class="container clearfix">
+    <div class="middle-container">
+        <div class="middle">
+            {% block sub %}
+            {% for article in articles %}
+                <a href="/articles/{{ articles._id }}">{{ article.title }}</article></a>
+            {% endblock %}
+        </div>
+    </div>
+    <div class="left-container">
+        <h1>指示色</h1>
+    </div>
+    <div class="right-container">
+        <h1>指示色</h1>
+    </div>
+</div>
+{% endblock %}

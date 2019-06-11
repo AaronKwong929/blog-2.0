@@ -134,7 +134,7 @@ input {
     font-weight: 200;
 }
 
-/**  双飞翼中部  */
+/**  双飞翼  */
 .middle-container {
     width: 100%;
     background: lightcoral;
@@ -151,6 +151,7 @@ input {
     float: left;
     background: lightblue;
     width: 300px;
+    height: 550px;
     margin-left: -100%;
     text-align: center;
 }
@@ -159,6 +160,7 @@ input {
     float: left;
     background: lightblue;
     width: 300px;
+    height: 550px;
     margin-left: -300px;
     text-align: center;
 }
