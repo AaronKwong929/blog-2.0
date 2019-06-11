@@ -24,7 +24,7 @@
     },
     "devDependencies": {},
     "scripts": {
-        "dev": "nodemon app.js -e css,js"
+        "dev": "nodemon app.js"
     },
     "repository": {
         "type": "git",
