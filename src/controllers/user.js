@@ -73,7 +73,6 @@ const fn_editUser = async ctx => {
         return await ctx.render('need-to-login');
     }
     const user = ctx.session.user;
-
     if (ctx.method === 'GET') {
         await ctx.render('userEdit', {
             name: user.name,
@@ -84,39 +83,12 @@ const fn_editUser = async ctx => {
             const name = ctx.request.body.name,
                 email = user.email;
             var password = ctx.request.body.password;
-            if (password.length > 0 && name.length > 0) {
-                password = await bcrypt.hash(password, 8);
-                await User.findOneAndUpdate(
-                    { email },
-                    {
-                        name,
-                        password,
-                        updatedAt: new Date().getTime()
-                    }
-                );
-            } else if (!password && name.length > 0) {
-                await User.findOneAndUpdate(
-                    { email },
-                    {
-                        name,
-                        updatedAt: new Date().getTime()
-                    }
-                );
-            } else if (!name && password.length > 0) {
-                await User.findOneAndUpdate(
-                    { email },
-                    {
-                        password,
-                        updatedAt: new Date().getTime()
-                    }
-                );
-            } else {
-                throw new Error();
-            }
-            if (name) {
-                ctx.session.user.name = name;
-            }
-            return await ctx.redirect('/');
+            const newUser = await User.findOne({ email });
+            newUser.name = name;
+            newUser.password = password;
+            newUser.save();
+            ctx.session.user.name = name;
+            return await ctx.redirect('/me');
         } catch (e) {
             await ctx.render('fail-on-user-edit');
         }

@@ -9,8 +9,8 @@ const fn_articles = async ctx => {
 
 const fn_readArticle = async ctx => {
     const _id = ctx.params.id;
+    const article = await Articles.findById({ _id });
     try {
-        const article = await Articles.findById({ _id });
         if (!article) {
             throw new Error();
         }
@@ -43,8 +43,8 @@ const fn_newArticle = async ctx => {
 };
 
 const fn_deleteArticle = async ctx => {
-    const id = ctx.params.id,
-        deleteArticle = await Articles.findByIdAndDelete({ id });
+    const _id = ctx.params.id,
+        deleteArticle = await Articles.findByIdAndDelete({ _id });
     if (!deleteArticle) {
         await ctx.render('fail-on-delete');
     }
@@ -52,13 +52,18 @@ const fn_deleteArticle = async ctx => {
 };
 
 const fn_editArticle = async ctx => {
-    const id = ctx.params.id,
-        article = await Articles.findById({ id });
+    const _id = ctx.params.id,
+        article = await Articles.findById({ _id });
     if (ctx.method === 'GET') {
         await ctx.render('editArticle', {
             article
         });
     } else if (ctx.method === 'POST') {
+        article.title = ctx.request.body.title;
+        article.type = ctx.request.body.type;
+        article.content = ctx.request.body.type;
+        await article.save();
+        await ctx.redirect(`/articles/${article._id}`);
     }
 };
 

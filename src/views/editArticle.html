@@ -5,17 +5,17 @@
             {% block sub %}
             <form action="{{ "/articles/" + article._id + "/edit" }}" method="POST">
                 <p>
-                    <input name="title" type="text" placeholder="{{ article.title }}" />
+                    <input name="title" type="text" value="{{ article.title }}" />
                 </p>
                 <p>
                     <input
                         name="type"
                         type="text"
-                        placeholder="{{ article.type }}"
+                        value="{{ article.type }}"
                     />
                 </p>
                 <p>
-                    <textarea name="content" placeholder="{{ article.content }}"></textarea>
+                    <textarea name="content">{{ article.content }}</textarea>
                 </p>
                 <button type="submit" class="btn">
                     修改
