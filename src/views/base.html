@@ -16,7 +16,6 @@
                 </ul>
                 <div class="nav-right">
                     {% if user %} 
-                        <!-- <p>欢迎回来，<a href="{{ "/" + user.name }}">{{ user.name }}</a></p> -->
                         <p>欢迎回来，<a href="/me">{{ user.name }}</a></p>
                         <a href="/logout">注销</a>
                     {% else %}

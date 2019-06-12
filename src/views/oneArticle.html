@@ -1,0 +1,35 @@
+{% extends "src/views/base.html" %} {% block main %}
+<div class="container clearfix">
+    <div class="middle-container">
+        <div class="middle">
+            {% block sub %}
+            <div class="markdown-body">
+                <h1>{{ article.title }}</h1>
+                <h2>{{ article.author }}</h2>
+                <h3>创建于： {{ article.createdAt }}</h3>
+                <h3>修改于： {{ article.updatedAt }}</h3>
+                {{ marked(article.content) | safe }}
+            </div>
+            {% if user.isAdmin %}
+            <a class="btn" href="{{ "/articles/" + article._id + "/edit" }}">编辑</a>
+            <a class="btn" href="{{ "/articles/" + article._id + "/delete" }}">删除</a>
+            {% endif %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="left-container">
+        <h1>指示色</h1>
+    </div>
+    <div class="right-container">
+        <h1>指示色</h1>
+    </div>
+</div>
+<!-- <script src="https://cdn.bootcss.com/marked/0.3.19/marked.min.js"></script>
+<script>
+    var input = $('.input')
+    $('.show').html(marked(input.val()))
+    input.on('input', function() {
+        $('.show').html(marked($(this).val()))
+    })
+</script> -->
+{% endblock %}

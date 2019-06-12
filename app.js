@@ -7,12 +7,24 @@ const controller = require('./src/middlewares/controller');
 const views = require('koa-views');
 const session = require('koa-session');
 const session_config = require('./src/configs/session');
+const marked = require('marked');
 
 const isProduction = process.env.NODE_ENV === 'production';
 if (!isProduction) {
     const staticFiles = require('./src/middlewares/static-files');
     app.use(staticFiles('/src/statics/', __dirname + '/src/statics'));
 }
+
+marked.setOptions({
+    renderer: new marked.Renderer(),
+    gfm: true,
+    tables: true,
+    breaks: false,
+    pedantic: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false
+});
 
 app.keys = ['yooooo'];
 
@@ -28,6 +40,7 @@ app.use(
 
 app.use(async (ctx, next) => {
     ctx.state.user = ctx.session.user;
+    ctx.state.marked = marked;
     await next();
 });
 

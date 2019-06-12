@@ -3,22 +3,22 @@
     <div class="middle-container">
         <div class="middle">
             {% block sub %}
-            <form action="/new" method="POST">
+            <form action="{{ "/articles/" + article._id + "/edit" }}" method="POST">
                 <p>
-                    <input name="title" type="text" placeholder="Title" />
+                    <input name="title" type="text" placeholder="{{ article.title }}" />
                 </p>
                 <p>
                     <input
                         name="type"
                         type="text"
-                        placeholder="Type"
+                        placeholder="{{ article.type }}"
                     />
                 </p>
                 <p>
-                    <textarea name="content"></textarea>
+                    <textarea name="content" placeholder="{{ article.content }}"></textarea>
                 </p>
                 <button type="submit" class="btn">
-                    发表
+                    修改
                 </button>
             </form>
             {% endblock %}

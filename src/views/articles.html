@@ -4,7 +4,8 @@
         <div class="middle">
             {% block sub %}
             {% for article in articles %}
-                <a href="/articles/{{ articles._id }}">{{ article.title }}</article></a>
+                <a href="{{" /articles/ + article._id "}}">{{ article.title }}</a>
+            {% endfor %}
             {% endblock %}
         </div>
     </div>

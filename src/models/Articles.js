@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const taskSchema = new mongoose.Schema({
+const articleSchema = new mongoose.Schema({
     title: {
         type: String,
         trim: true,
@@ -9,8 +9,7 @@ const taskSchema = new mongoose.Schema({
     },
     author: {
         type: String,
-        trim: true,
-        required: true,
+        default: 'aar',
     },
     content: {
         type: String,
@@ -30,4 +29,13 @@ const taskSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Task', taskSchema);
+articleSchema.pre('save', async function (next) {
+    const article = this;
+    const now = new Date().getTime();
+    if (article.updatedAt !== now) {
+        article.updatedAt = now;
+    }
+    next();
+});
+
+module.exports = mongoose.model('Article', articleSchema);
