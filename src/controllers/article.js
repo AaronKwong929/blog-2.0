@@ -27,7 +27,7 @@ const fn_newArticle = async ctx => {
     } else if (ctx.method === 'POST') {
         try {
             const post = Object.assign(ctx.request.body, {
-                author: 'Aaron'
+                author: ctx.session.user.name,
             });
             const article = await Articles.create(post);
             await article.save();
@@ -39,6 +39,9 @@ const fn_newArticle = async ctx => {
 };
 
 const fn_deleteArticle = async ctx => {
+    if (!ctx.session.user.isAdmin) {
+        return await ctx.render('need-Admin');
+    }
     const _id = ctx.params.id,
         deleteArticle = await Articles.findByIdAndDelete({ _id });
     if (!deleteArticle) {
@@ -48,6 +51,9 @@ const fn_deleteArticle = async ctx => {
 };
 
 const fn_editArticle = async ctx => {
+    if (!ctx.session.user.isAdmin) {
+        return await ctx.render('need-Admin');
+    }
     const _id = ctx.params.id,
         article = await Articles.findById({ _id });
     if (ctx.method === 'GET') {
