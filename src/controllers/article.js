@@ -27,7 +27,7 @@ const fn_newArticle = async ctx => {
     } else if (ctx.method === 'POST') {
         try {
             const post = Object.assign(ctx.request.body, {
-                author: ctx.session.user.name,
+                author: ctx.session.user.name
             });
             const article = await Articles.create(post);
             await article.save();
