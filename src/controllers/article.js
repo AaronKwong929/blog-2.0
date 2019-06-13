@@ -10,16 +10,12 @@ const fn_articles = async ctx => {
 const fn_readArticle = async ctx => {
     const _id = ctx.params.id;
     const article = await Articles.findById({ _id });
-    try {
-        if (!article) {
-            throw new Error();
-        }
-        await ctx.render('oneArticle', {
-            article
-        });
-    } catch (e) {
-        ctx.render('fail-on-no-article');
+    if (!article) {
+        return await ctx.render('fail-on-no-article');
     }
+    await ctx.render('oneArticle', {
+        article
+    });
 };
 
 const fn_newArticle = async ctx => {
