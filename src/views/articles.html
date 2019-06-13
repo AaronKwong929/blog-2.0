@@ -5,7 +5,7 @@
             {% block sub %}
             {% for article in articles %}
             <p>
-                <a href="{{ "/articles/" + article._id  }}">{{ article.title }}</a>
+                <a href="{{ "/articles/" + article._id  }}">{{ article.title }} &nbsp; {{ article.author }} &nbsp; {{ article.createdAt }}</a>
             </p>
             {% endfor %}
             {% endblock %}
