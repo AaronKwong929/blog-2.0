@@ -10,7 +10,7 @@ const fn_signin = async ctx => {
                 password = ctx.request.body.password,
                 user = await User.findOne({ email }),
                 isMatch = await bcrypt.compare(password, user.password);
-            if (!user && !isMatch) {
+            if (!user || !isMatch) {
                 throw new Error();
             }
             ctx.session.user = {
@@ -21,7 +21,7 @@ const fn_signin = async ctx => {
             };
             await ctx.redirect('/me');
         } catch (e) {
-            await ctx.render('failed-on-signin');
+            await ctx.render('fail-on-signin');
         }
     }
 };
