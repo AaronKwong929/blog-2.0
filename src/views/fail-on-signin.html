@@ -4,22 +4,7 @@
         <div class="middle">
             {% block sub %}
             <div class="alert">登陆失败，请重试</div>
-            <form action="/signin" method="POST">
-                <p>
-                    <input name="email" type="text" placeholder="Email" />
-                </p>
-                <p>
-                    <input
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                    />
-                </p>
-                <button type="submit" class="btn">
-                    登陆
-                </button>
-                <a href="/signup">点击此处进行注册</a>
-            </form>
+            <a href="/signin" class="btn">返回</a>
             {% endblock %}
         </div>
     </div>
