@@ -3,7 +3,22 @@
     <div class="middle-container">
         <div class="middle">
             {% block sub %}
-            <h1>fail on new article</h1>
+            <h1>新建文章失败</h1>
+            <form action="/new" method="POST">
+                <p>
+                    <input name="title" type="text" placeholder="Title" />
+                </p>
+                <p>
+                    <input name="type" type="text" placeholder="Type" />
+                </p>
+                <p>
+                    <textarea name="content"></textarea>
+                </p>
+                <button type="submit" class="btn">
+                    发表
+                </button>
+                <a href="/me" class="btn">返回</a>
+            </form>
             {% endblock %}
         </div>
     </div>
