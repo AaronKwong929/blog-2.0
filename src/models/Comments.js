@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema({
+    articleID: {
+        type: String
+    },
     author: {
         type: String
     },

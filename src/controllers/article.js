@@ -1,4 +1,5 @@
 const Articles = require('../models/Articles');
+const Comments = require('../models/Comments');
 
 const fn_articles = async ctx => {
     const articles = await Articles.find({});
@@ -13,8 +14,10 @@ const fn_readArticle = async ctx => {
     if (!article) {
         return await ctx.render('fail-on-no-article');
     }
+    const comments = await Comments.findById({ _id });
     await ctx.render('oneArticle', {
-        article
+        article,
+        comments
     });
 };
 
