@@ -14,7 +14,7 @@ const fn_readArticle = async ctx => {
     if (!article) {
         return await ctx.render('fail-on-no-article');
     }
-    const comments = await Comments.findById({ _id });
+    const comments = await Comments.find({ articleID: _id });
     await ctx.render('oneArticle', {
         article,
         comments
