@@ -1,35 +1,43 @@
-<form action="{{ "/articles/" + article._id + "/comments/new" }}" method="POST">
-    <div class="media-content">
-        <div class="field">
-            <input type="hidden" name="articleId" value="{{ article._id }}" />
-            <p class="control">
-                <textarea
-                    name="content"
-                    class="textarea"
-                    placeholder="发表评论…"
-                ></textarea>
-            </p>
+{% if user %}
+    <form action="{{ "/articles/" + article._id + "/comments/new" }}" method="POST">
+        <div class="media-content">
+            <div class="field">
+                <input type="hidden" name="articleId" value="{{ article._id }}" />
+                <p class="control">
+                    <textarea
+                        name="content"
+                        class="textarea"
+                        placeholder="发表评论…"
+                    ></textarea>
+                </p>
+            </div>
+            <button class="button is-info is-pulled-right" type="submit">Submit</button>
         </div>
-        <button class="button is-info is-pulled-right" type="submit">Submit</button>
-    </div>
-</form>
-{% for comment in comments %}
-<article class="media comment">
-    <div class="media-content">
-        <div class="content">
-            <p>
-                <strong>{{ comment.author }}</strong>
-                <br />
-                {{ marked(comment.content) | safe }}
-            </p>
+    </form>
+    {% for comment in comments %}
+    <article class="media comment">
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    <strong>{{ comment.author }}</strong>
+                    <br />
+                    {{ marked(comment.content) | safe }}
+                </p>
+            </div>
         </div>
-        <nav></nav>
-    </div>
-    <div class="media-right is-invisible">
-        <button id="reply" class="button is-small is-primary">回复</button>
-        <a href="/comments/{{ comment._id }}/delete" class="button is-small"
-            >删除</a
-        >
-    </div>
-</article>
-{% endfor %}
+        <div>
+            <button class="btn">回复</button>
+            {% if user.name == comment.author %}
+            <a href="/articles/{{ article._id }}/comments/{{ comment._id }}/delete" class="btn">删除</a>
+            {% endif %}
+        </div>
+    </article>
+    {% endfor %}
+
+{% else %}
+<div class="wtf">
+    <p>
+        <h1>登陆后方可查看评论</h1>
+    </p>
+</div>
+{% endif %}
