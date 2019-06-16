@@ -33,7 +33,7 @@ const fn_newArticle = async ctx => {
                 author: ctx.session.user.name
             });
             const article = await Articles.create(post);
-            await article.save();
+            //await article.save();
             await ctx.redirect(`/articles/${article._id}`);
         } catch (e) {
             await ctx.render('fail-on-new');

@@ -11,7 +11,7 @@
                     ></textarea>
                 </p>
             </div>
-            <button class="button is-info is-pulled-right" type="submit">Submit</button>
+            <button class="btn" type="submit">发布</button>
         </div>
     </form>
     {% for comment in comments %}
@@ -27,8 +27,9 @@
         </div>
         <div>
             <button class="btn">回复</button>
-            {% if user.name == comment.author %}
+            {% if user.name == "admin" or user.name == comment.author %}
             <a href="/articles/{{ article._id }}/comments/{{ comment._id }}/delete" class="btn">删除</a>
+            <a href="/articles/{{ article._id }}/comments/{{ comment._id }}/edit" class="btn">修改</a>
             {% endif %}
         </div>
     </article>

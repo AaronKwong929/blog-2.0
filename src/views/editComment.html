@@ -1,0 +1,28 @@
+{% extends "src/views/base.html" %} {% block main %}
+<div class="container clearfix">
+    <div class="middle-container">
+        <div class="middle">
+            {% block sub %}
+            <form action="/articles/{{ articleID }}/comments/{{ comment._id }}/edit" method="POST">
+                <!-- <p>
+                    <input name="title" type="text" value="{{ article.title }}" />
+                </p> -->
+                <p>
+                    <textarea name="content"></textarea>
+                </p>
+                <button type="submit" class="btn">
+                    修改
+                </button>
+                <a class="btn" href="/articles/{{ articleID }}">返回文章</a>
+            </form>
+            {% endblock %}
+        </div>
+    </div>
+    <div class="left-container">
+        <h1>指示色</h1>
+    </div>
+    <div class="right-container">
+        <h1>指示色</h1>
+    </div>
+</div>
+{% endblock %}

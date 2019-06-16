@@ -20,4 +20,13 @@ const commentSchema = new mongoose.Schema({
     }
 });
 
+commentSchema.pre('save', async function (next) {
+    const comment = this;
+    const now = new Date().getTime();
+    if (comment.updatedAt !== now) {
+        comment.updatedAt = now;
+    }
+    next();
+});
+
 module.exports = mongoose.model('Comments', commentSchema);
