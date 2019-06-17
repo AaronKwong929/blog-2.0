@@ -3,7 +3,7 @@
     <div class="middle-container">
         <div class="middle">
             {% block sub %}
-            <div class="markdown-body">
+            <div>
                 <h1>{{ article.title }}</h1>
                 <h2>{{ article.author }}</h2>
                 <h3>创建于： {{ article.createdAt }}</h3>
@@ -27,9 +27,11 @@
         <h3>点赞数 &nbsp; 点踩数</h3>
         <h3>{{ likesAndDislikes.likes }} &nbsp; {{ likesAndDislikes.dislikes }}</h3>
         {% if hasLikedOrDisliked %}
-        <div>
-            你已操作
-        </div>
+            {% if user %}
+            <div>你已操作</div>
+            {% else %}
+            <div>请先<a href="/signin">登陆</a></div>
+            {% endif %}
         {% else %}
         <div>
             <a class="btn" href="/articles/{{ article._id }}/like">点赞</a>

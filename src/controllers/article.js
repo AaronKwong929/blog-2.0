@@ -10,6 +10,7 @@ const fn_articles = async ctx => {
 };
 
 const fn_readArticle = async ctx => {
+    var hasLikedOrDisliked = {};
     const _id = ctx.params.id;
     const article = await Articles.findById({ _id });
     if (!article) {
@@ -17,9 +18,13 @@ const fn_readArticle = async ctx => {
     }
     const comments = await Comments.find({ articleID: _id });
     const likesAndDislikes = await Likes.findOne({ ArticleID: _id });
-    const hasLikedOrDisliked = likesAndDislikes.userIDs.find(
-        user => user.userID === ctx.session.user.id
-    );
+    if (ctx.session.user) {
+        hasLikedOrDisliked = likesAndDislikes.userIDs.find(
+            user => user.userID === ctx.session.user.id
+        );
+        // hasLikedOrDisliked = likesAndDislikes.findUser(ctx.session.user.id);
+    }
+    console.log(hasLikedOrDisliked);
     await ctx.render('oneArticle', {
         article,
         comments,
@@ -80,20 +85,22 @@ const fn_editArticle = async ctx => {
 };
 
 const fn_like = async ctx => {
-    const article = await Likes.findOne({ ArticleID: ctx.params.id });
+    // const article = await Likes.findOne({ ArticleID: ctx.params.id });
     const likesAndDislikes = await Likes.findOne({
         ArticleID: ctx.params.id
     });
     try {
+        // const hasLikedOrDisliked = likesAndDislikes.findUser(ctx.session.user.id);
         const hasLikedOrDisliked = likesAndDislikes.userIDs.find(
             user => user.userID === ctx.session.user.id
         );
         if (hasLikedOrDisliked) {
             throw new Error();
         }
-        article.likes++;
-        article.userIDs.push({ userID: ctx.session.user.id });
-        await article.save();
+        likesAndDislikes.likes++;
+        likesAndDislikes.userIDs.push({ userID: ctx.session.user.id });
+        await likesAndDislikes.save();
+        // likesAndDislikes.like();
         await ctx.redirect('back');
     } catch (e) {
         await ctx.render('404');
@@ -106,6 +113,7 @@ const fn_dislike = async ctx => {
         ArticleID: ctx.params.id
     });
     try {
+        // const hasLikedOrDisliked = likesAndDislikes.findUser(ctx.session.user.id);
         const hasLikedOrDisliked = likesAndDislikes.userIDs.find(
             user => user.userID === ctx.session.user.id
         );
