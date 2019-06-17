@@ -1,5 +1,6 @@
 const Articles = require('../models/Articles');
 const Comments = require('../models/Comments');
+const Likes = require('../models/Likes');
 
 const fn_articles = async ctx => {
     const articles = await Articles.find({});
@@ -15,9 +16,15 @@ const fn_readArticle = async ctx => {
         return await ctx.render('fail-on-no-article');
     }
     const comments = await Comments.find({ articleID: _id });
+    const likesAndDislikes = await Likes.findOne({ ArticleID: _id });
+    const hasLikedOrDisliked = likesAndDislikes.userIDs.find(
+        user => user.userID === ctx.session.user.id
+    );
     await ctx.render('oneArticle', {
         article,
-        comments
+        comments,
+        likesAndDislikes,
+        hasLikedOrDisliked
     });
 };
 
@@ -33,7 +40,7 @@ const fn_newArticle = async ctx => {
                 author: ctx.session.user.name
             });
             const article = await Articles.create(post);
-            //await article.save();
+            await Likes.create(Object.assign({ ArticleID: article._id }));
             await ctx.redirect(`/articles/${article._id}`);
         } catch (e) {
             await ctx.render('fail-on-new');
@@ -72,6 +79,48 @@ const fn_editArticle = async ctx => {
     }
 };
 
+const fn_like = async ctx => {
+    const article = await Likes.findOne({ ArticleID: ctx.params.id });
+    const likesAndDislikes = await Likes.findOne({
+        ArticleID: ctx.params.id
+    });
+    try {
+        const hasLikedOrDisliked = likesAndDislikes.userIDs.find(
+            user => user.userID === ctx.session.user.id
+        );
+        if (hasLikedOrDisliked) {
+            throw new Error();
+        }
+        article.likes++;
+        article.userIDs.push({ userID: ctx.session.user.id });
+        await article.save();
+        await ctx.redirect('back');
+    } catch (e) {
+        await ctx.render('404');
+    }
+};
+
+const fn_dislike = async ctx => {
+    const article = await Likes.findOne({ ArticleID: ctx.params.id });
+    const likesAndDislikes = await Likes.findOne({
+        ArticleID: ctx.params.id
+    });
+    try {
+        const hasLikedOrDisliked = likesAndDislikes.userIDs.find(
+            user => user.userID === ctx.session.user.id
+        );
+        if (hasLikedOrDisliked) {
+            throw new Error();
+        }
+        article.dislikes++;
+        article.userIDs.push({ userID: ctx.session.user.id });
+        await article.save();
+        await ctx.redirect('back');
+    } catch (e) {
+        await ctx.render('404');
+    }
+};
+
 module.exports = {
     'GET /articles': fn_articles,
     'GET /articles/:id': fn_readArticle,
@@ -79,5 +128,7 @@ module.exports = {
     'POST /new': fn_newArticle,
     'GET /articles/:id/delete': fn_deleteArticle,
     'GET /articles/:id/edit': fn_editArticle,
-    'POST /articles/:id/edit': fn_editArticle
+    'POST /articles/:id/edit': fn_editArticle,
+    'GET /articles/:id/like': fn_like,
+    'GET /articles/:id/dislike': fn_dislike
 };

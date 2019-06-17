@@ -23,7 +23,19 @@
         <h1>指示色</h1>
     </div>
     <div class="right-container">
-        <h1>指示色</h1>
+        <h1>文章信息</h1>
+        <h3>点赞数 &nbsp; 点踩数</h3>
+        <h3>{{ likesAndDislikes.likes }} &nbsp; {{ likesAndDislikes.dislikes }}</h3>
+        {% if hasLikedOrDisliked %}
+        <div>
+            你已操作
+        </div>
+        {% else %}
+        <div>
+            <a class="btn" href="/articles/{{ article._id }}/like">点赞</a>
+            <a class="btn" href="/articles/{{ article._id }}/dislike">点踩</a>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
