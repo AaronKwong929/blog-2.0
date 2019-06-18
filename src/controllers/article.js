@@ -18,13 +18,10 @@ const fn_readArticle = async ctx => {
     }
     const comments = await Comments.find({ articleID: _id });
     const likesAndDislikes = await Likes.findOne({ ArticleID: _id });
-    // const hasLiked = await likesAndDislikes.findUser(ctx.session.user.id);  // 貌似能成
-    console.log(hasLiked);
     if (ctx.session.user) {
-        hasLikedOrDisliked = likesAndDislikes.userIDs.find(
-            user => user.userID === ctx.session.user.id
+        hasLikedOrDisliked = await likesAndDislikes.findUser(
+            ctx.session.user.id
         );
-        // hasLiked = await likesAndDislikes.findUser(ctx.session.user.id);
     }
     await ctx.render('oneArticle', {
         article,
@@ -90,17 +87,13 @@ const fn_like = async ctx => {
         ArticleID: ctx.params.id
     });
     try {
-        // const hasLikedOrDisliked = await likesAndDislikes.findUser(ctx.session.user.id);
-        const hasLikedOrDisliked = likesAndDislikes.userIDs.find(
-            user => user.userID === ctx.session.user.id
+        const hasLikedOrDisliked = await likesAndDislikes.findUser(
+            ctx.session.user.id
         );
         if (hasLikedOrDisliked) {
             throw new Error();
         }
-        likesAndDislikes.likes++;
-        likesAndDislikes.userIDs.push({ userID: ctx.session.user.id });
-        await likesAndDislikes.save();
-        // await likesAndDislikes.like();
+        await likesAndDislikes.like(ctx.session.user.id);
         await ctx.redirect('back');
     } catch (e) {
         await ctx.render('404');
@@ -108,21 +101,17 @@ const fn_like = async ctx => {
 };
 
 const fn_dislike = async ctx => {
-    const article = await Likes.findOne({ ArticleID: ctx.params.id });
     const likesAndDislikes = await Likes.findOne({
         ArticleID: ctx.params.id
     });
     try {
-        // const hasLikedOrDisliked = likesAndDislikes.findUser(ctx.session.user.id);
-        const hasLikedOrDisliked = likesAndDislikes.userIDs.find(
-            user => user.userID === ctx.session.user.id
+        const hasLikedOrDisliked = await likesAndDislikes.findUser(
+            ctx.session.user.id
         );
         if (hasLikedOrDisliked) {
             throw new Error();
         }
-        article.dislikes++;
-        article.userIDs.push({ userID: ctx.session.user.id });
-        await article.save();
+        await likesAndDislikes.dislike(ctx.session.user.id);
         await ctx.redirect('back');
     } catch (e) {
         await ctx.render('404');

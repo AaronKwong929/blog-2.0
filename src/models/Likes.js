@@ -26,11 +26,18 @@ likesSchema.methods.findUser = async function(id) {
     );
 };
 
-// likesSchema.methods.like = async function() {
-//     const likesAndDislikes = this;
-//     likesAndDislikes.likes++;
-//     likesAndDislikes.userIDs.push({ userID: ctx.session.user.id });
-//     await this.save();
-// };
+likesSchema.methods.like = async function(id) {
+    const likesAndDislikes = this;
+    likesAndDislikes.likes++;
+    likesAndDislikes.userIDs.push({ userID: id });
+    await this.save();
+};
+
+likesSchema.methods.dislike = async function(id) {
+    const likesAndDislikes = this;
+    likesAndDislikes.dislikes++;
+    likesAndDislikes.userIDs.push({ userID: id });
+    await this.save();
+};
 
 module.exports = mongoose.model('Likes', likesSchema);
