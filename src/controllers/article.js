@@ -18,13 +18,14 @@ const fn_readArticle = async ctx => {
     }
     const comments = await Comments.find({ articleID: _id });
     const likesAndDislikes = await Likes.findOne({ ArticleID: _id });
+    // const hasLiked = await likesAndDislikes.findUser(ctx.session.user.id);  // 貌似能成
+    console.log(hasLiked);
     if (ctx.session.user) {
         hasLikedOrDisliked = likesAndDislikes.userIDs.find(
             user => user.userID === ctx.session.user.id
         );
-        // hasLikedOrDisliked = likesAndDislikes.findUser(ctx.session.user.id);
+        // hasLiked = await likesAndDislikes.findUser(ctx.session.user.id);
     }
-    console.log(hasLikedOrDisliked);
     await ctx.render('oneArticle', {
         article,
         comments,
@@ -85,12 +86,11 @@ const fn_editArticle = async ctx => {
 };
 
 const fn_like = async ctx => {
-    // const article = await Likes.findOne({ ArticleID: ctx.params.id });
     const likesAndDislikes = await Likes.findOne({
         ArticleID: ctx.params.id
     });
     try {
-        // const hasLikedOrDisliked = likesAndDislikes.findUser(ctx.session.user.id);
+        // const hasLikedOrDisliked = await likesAndDislikes.findUser(ctx.session.user.id);
         const hasLikedOrDisliked = likesAndDislikes.userIDs.find(
             user => user.userID === ctx.session.user.id
         );
@@ -100,7 +100,7 @@ const fn_like = async ctx => {
         likesAndDislikes.likes++;
         likesAndDislikes.userIDs.push({ userID: ctx.session.user.id });
         await likesAndDislikes.save();
-        // likesAndDislikes.like();
+        // await likesAndDislikes.like();
         await ctx.redirect('back');
     } catch (e) {
         await ctx.render('404');

@@ -19,12 +19,12 @@ const likesSchema = new mongoose.Schema({
     }],
 });
 
-// likesSchema.methods.findUser = async function(id) {
-//     const likesAndDislikes = this;
-//     return likesAndDislikes.userIDs.find(
-//         user => user.userID === id
-//     );
-// };
+likesSchema.methods.findUser = async function(id) {
+    const likesAndDislikes = this;
+    return likesAndDislikes.userIDs.find(
+        user => user.userID === id
+    );
+};
 
 // likesSchema.methods.like = async function() {
 //     const likesAndDislikes = this;
