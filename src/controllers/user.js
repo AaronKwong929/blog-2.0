@@ -19,6 +19,8 @@ const fn_signin = async ctx => {
                 email: user.email,
                 isAdmin: user.isAdmin
             };
+            user.lastLogin = new Date().getTime();
+            await user.save();
             await ctx.redirect('/me');
         } catch (e) {
             await ctx.render('fail-on-signin');

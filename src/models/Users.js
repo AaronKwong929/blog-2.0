@@ -49,6 +49,10 @@ const userSchema = new mongoose.Schema({
     updatedAt: {
         type: String,
         default: new Date().getTime()
+    },
+    lastLogin: {
+        type: String,
+        default: new Date().getTime()
     }
 });
 
