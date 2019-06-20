@@ -4,47 +4,14 @@
         <title>Aaron's blog 2.0</title>
         <link rel="stylesheet" href="/src/statics/css/index.css" />
     </head>
-
     <body>
-        <div class="clearfix">
-            <div class="nav">
-                <ul>
-                    <li><a href="/">主页</a></li>
-                    <li><a href="/articles">文章</a></li>
-                    <li><a href="/help">帮助</a></li>
-                    <li><a href="/about">关于</a></li>
-                </ul>
-                <div class="nav-right">
-                    {% if user %} 
-                        <p>欢迎回来，<a href="/me">{{ user.name }}</a></p>
-                        <a href="/logout">注销</a>
-                    {% else %}
-                    <a href="/signin">登陆/注册</a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-        {% block main %} {% block sub %} {% endblock %} {% endblock %}
-
-        <div class="footer-class clearfix">
-            &copy; 2019 AaronKwong929
-            <div class="social-links">
-                <ul>
-                    <li>
-                        <a href="/" target="_blank">主页</a>
-                    </li>
-                    <li>
-                        <a href="#" target="_blank">微博</a>
-                    </li>
-                    <li>
-                        <a
-                            href="https://github.com/AaronKwong929"
-                            target="_blank"
-                            >GitHub</a
-                        >
-                    </li>
-                </ul>
-            </div>
-        </div>
+        {% include "src/views/components/navigation.html" %}
+        {% block main %}
+            {% block sub %}
+            {% endblock %}
+        {% endblock %}
+        {% block script %}
+        {% endblock %}
+        {% include "src/views/components/footer.html" %}
     </body>
 </html>
