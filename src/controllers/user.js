@@ -5,26 +5,27 @@ const fn_signin = async ctx => {
     if (ctx.method === 'GET') {
         await ctx.render('signin');
     } else if (ctx.method === 'POST') {
-        try {
-            const email = ctx.request.body.email,
-                password = ctx.request.body.password,
-                user = await User.findOne({ email }),
-                isMatch = await bcrypt.compare(password, user.password);
-            if (!user || !isMatch) {
-                throw new Error();
-            }
-            ctx.session.user = {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-                isAdmin: user.isAdmin
-            };
-            user.lastLogin = new Date().getTime();
-            await user.save();
-            await ctx.redirect('/me');
-        } catch (e) {
-            await ctx.render('fail-on-signin');
+        // try {
+        const email = ctx.request.body.email,
+            password = ctx.request.body.password,
+            user = await User.findOne({ email }),
+            isMatch = await bcrypt.compare(password, user.password);
+        if (!user || !isMatch) {
+            throw new Error();
         }
+        ctx.session.user = {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            lastLogin: user.lastLogin
+        };
+        user.lastLogin = new Date().getTime();
+        await user.save();
+        await ctx.redirect('/me');
+        // } catch (e) {
+        //     await ctx.render('fail-on-signin');
+        // }
     }
 };
 
@@ -39,7 +40,8 @@ const fn_signup = async ctx => {
                 id: user._id,
                 name: user.name,
                 email: user.email,
-                isAdmin: user.isAdmin
+                isAdmin: user.isAdmin,
+                lastLogin: user.lastLogin
             };
             await ctx.redirect('/me');
         } catch (e) {

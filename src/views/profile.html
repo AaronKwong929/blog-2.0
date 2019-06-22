@@ -4,6 +4,7 @@
         <div class="middle">
             {% block sub %}
             <h1>欢迎回来，{{ name }}</h1>
+            <div>最后登录于：{{ user.lastLogin }}</div>
             {% if user.isAdmin %}
             <a href="/new" class="btn">新建文章</a>
             {% endif %}
