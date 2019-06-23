@@ -1,0 +1,12 @@
+<h2>点赞数 &nbsp; 点踩数</h2>
+<h3>{{ likesAndDislikes.likes }} &nbsp; {{ likesAndDislikes.dislikes }}</h3>
+{% if hasLikedOrDisliked %} {% if user %}
+<div>你已操作</div>
+{% else %}
+<div>请先<a href="/signin">登陆</a></div>
+{% endif %} {% else %}
+<div>
+    <a class="btn" href="/articles/{{ article._id }}/like">点赞</a>
+    <a class="btn" href="/articles/{{ article._id }}/dislike">点踩</a>
+</div>
+{% endif %}
