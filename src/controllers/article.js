@@ -69,6 +69,8 @@ const fn_deleteArticle = async ctx => {
             throw new Error();
         }
         await Articles.findByIdAndDelete(ctx.params.id);
+        await Comments.findOneAndDelete({ articleID: ctx.params.id });
+        await Likes.findOneAndDelete({ articleID: ctx.params.id });
         await ctx.redirect('/articles');
     } catch (e) {
         await ctx.render('need-Admin');

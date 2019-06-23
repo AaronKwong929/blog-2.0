@@ -21,9 +21,7 @@ const fn_editComment = async ctx => {
             comment
         });
     } else if (ctx.method === 'POST') {
-        //title = ctx.request.body.title,
         const content = ctx.request.body.content;
-        //comment.title = title;
         comment.content = content;
         await comment.save();
         await ctx.redirect(`/articles/${ctx.params.aid}`);

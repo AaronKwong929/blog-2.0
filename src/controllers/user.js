@@ -5,27 +5,27 @@ const fn_signin = async ctx => {
     if (ctx.method === 'GET') {
         await ctx.render('signin');
     } else if (ctx.method === 'POST') {
-        // try {
-        const email = ctx.request.body.email,
-            password = ctx.request.body.password,
-            user = await User.findOne({ email }),
-            isMatch = await bcrypt.compare(password, user.password);
-        if (!user || !isMatch) {
-            throw new Error();
+        try {
+            const email = ctx.request.body.email,
+                password = ctx.request.body.password,
+                user = await User.findOne({ email }),
+                isMatch = await bcrypt.compare(password, user.password);
+            if (!user || !isMatch) {
+                throw new Error();
+            }
+            ctx.session.user = {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                isAdmin: user.isAdmin,
+                lastLogin: user.lastLogin
+            };
+            user.lastLogin = new Date().getTime();
+            await user.save();
+            await ctx.redirect('/me');
+        } catch (e) {
+            await ctx.render('fail-on-signin');
         }
-        ctx.session.user = {
-            id: user._id,
-            name: user.name,
-            email: user.email,
-            isAdmin: user.isAdmin,
-            lastLogin: user.lastLogin
-        };
-        user.lastLogin = new Date().getTime();
-        await user.save();
-        await ctx.redirect('/me');
-        // } catch (e) {
-        //     await ctx.render('fail-on-signin');
-        // }
     }
 };
 
@@ -56,10 +56,10 @@ const fn_logout = async ctx => {
 };
 
 const fn_me = async ctx => {
-    if (!ctx.session.user) {
-        await ctx.render('need-to-login');
-    }
     try {
+        if (!ctx.session.user) {
+            throw new Error();
+        }
         const user = ctx.session.user;
         await ctx.render('profile', {
             id: user._id,
@@ -73,15 +73,19 @@ const fn_me = async ctx => {
 };
 
 const fn_editUser = async ctx => {
-    if (!ctx.session.user) {
-        return await ctx.render('need-to-login');
-    }
     const user = ctx.session.user;
     if (ctx.method === 'GET') {
-        await ctx.render('userEdit', {
-            name: user.name,
-            email: user.email
-        });
+        try {
+            if (!ctx.session.user) {
+                throw new Error();
+            }
+            await ctx.render('userEdit', {
+                name: user.name,
+                email: user.email
+            });
+        } catch (e) {
+            await ctx.render('need-to-login');
+        }
     } else if (ctx.method === 'POST') {
         try {
             const name = ctx.request.body.name,
