@@ -1,32 +1,29 @@
 {% if user %}
     <form action="{{ "/articles/" + article._id + "/comments/new" }}" method="POST">
-        <div class="media-content">
-            <div class="field">
-                <input type="hidden" name="articleId" value="{{ article._id }}" />
-                <div class="control" id="control"  type="hidden">
-                    <textarea
-                        name="content"
-                        class="textarea"
-                        placeholder="发表评论…"
-                    ></textarea>
-                </div>
-            </div>
-            <button class="btn" type="submit">发布</button>
+        <!--<input type="hidden" name="articleId" value="{{ article._id }}" />-->
+        <div class="control" id="control" style="display: none;">
+            <textarea name="content" class="textarea" placeholder="发表评论" id="textarea"
+        ></textarea>
         </div>
+        <button class="btn" id="btn0" type="submit" style="display: none;">发布</button>
+        
+        <button class="btn" id="btn2" type="reset" style="display: none;">清空</button>
+        <button class="btn" id="btn3" type="button" style="display: none;" onclick="hide()">取消</button>
     </form>
+    
     {% for comment in comments %}
     <article class="media comment">
         <div class="media-content">
             <div class="content">
                 <p>
                     <strong>{{ comment.author }}</strong>
+                    <p>发布于：{{ comment.updatedAt }}</p>
                     <br />
                     {{ marked(comment.content) | safe }}
                 </p>
             </div>
         </div>
         <div>
-            <button class="btn">回复</button>
             {% if user.name == "admin" or user.name == comment.author %}
             <a href="/articles/{{ article._id }}/comments/{{ comment._id }}/delete" class="btn">删除</a>
             <a href="/articles/{{ article._id }}/comments/{{ comment._id }}/edit" class="btn">修改</a>
@@ -36,9 +33,36 @@
     {% endfor %}
 
 {% else %}
-<div class="wtf">
+<div>
     <p>
         <h1><a href="/signin">登陆</a>后方可查看评论</h1>
     </p>
 </div>
 {% endif %}
+
+
+<!-- <script>
+function display() {
+    var btn1 = document.getElementById('btn1');
+    var btn2 = document.getElementById('btn2');
+    var btn3 = document.getElementById('btn3');
+    var control = document.getElementById('control');
+    control.style.display = 'block';
+    btn0.style.display = '';
+    btn1.style.display = 'none';
+    btn2.style.display = '';
+    btn3.style.display = '';
+}
+
+function hide() {
+    var btn1 = document.getElementById('btn1');
+    var btn2 = document.getElementById('btn2');
+    var btn3 = document.getElementById('btn3');
+    var control = document.getElementById('control');
+    control.style.display = 'none';
+    btn0.style.display = 'none';
+    btn1.style.display = '';
+    btn2.style.display = 'none';
+    btn3.style.display = 'none';
+}
+</script> -->

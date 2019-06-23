@@ -3,40 +3,52 @@ const Comments = require('../models/Comments');
 const Likes = require('../models/Likes');
 
 const fn_articles = async ctx => {
-    const articles = await Articles.find({});
-    await ctx.render('articles', {
-        articles
-    });
+    try {
+        const articles = await Articles.find({});
+        await ctx.render('articles', {
+            articles
+        });
+    } catch (e) {
+        await ctx.render('failed-on-fetch-articles');
+    }
 };
 
 const fn_readArticle = async ctx => {
     var hasLikedOrDisliked = {};
     const _id = ctx.params.id;
-    const article = await Articles.findById({ _id });
-    if (!article) {
-        return await ctx.render('fail-on-no-article');
+    try {
+        const article = await Articles.findById({ _id });
+        if (!article) {
+            throw new Error();
+        }
+        const comments = await Comments.find({ articleID: _id });
+        const likesAndDislikes = await Likes.findOne({ ArticleID: _id });
+        if (ctx.session.user) {
+            hasLikedOrDisliked = await likesAndDislikes.findUser(
+                ctx.session.user.id
+            );
+        }
+        await ctx.render('oneArticle', {
+            article,
+            comments,
+            likesAndDislikes,
+            hasLikedOrDisliked
+        });
+    } catch (e) {
+        await ctx.render('fail-on-no-article');
     }
-    const comments = await Comments.find({ articleID: _id });
-    const likesAndDislikes = await Likes.findOne({ ArticleID: _id });
-    if (ctx.session.user) {
-        hasLikedOrDisliked = await likesAndDislikes.findUser(
-            ctx.session.user.id
-        );
-    }
-    await ctx.render('oneArticle', {
-        article,
-        comments,
-        likesAndDislikes,
-        hasLikedOrDisliked
-    });
 };
 
 const fn_newArticle = async ctx => {
     if (ctx.method === 'GET') {
-        if (!ctx.session.user.isAdmin) {
+        try {
+            if (!ctx.session.user.isAdmin) {
+                throw new Error();
+            }
+            await ctx.render('newArticle');
+        } catch (e) {
             await ctx.render('need-admin');
         }
-        await ctx.render('newArticle');
     } else if (ctx.method === 'POST') {
         try {
             const post = Object.assign(ctx.request.body, {
@@ -74,11 +86,15 @@ const fn_editArticle = async ctx => {
             article
         });
     } else if (ctx.method === 'POST') {
-        article.title = ctx.request.body.title;
-        article.type = ctx.request.body.type;
-        article.content = ctx.request.body.type;
-        await article.save();
-        await ctx.redirect(`/articles/${article._id}`);
+        try {
+            article.title = ctx.request.body.title;
+            article.type = ctx.request.body.type;
+            article.content = ctx.request.body.content;
+            await article.save();
+            await ctx.redirect(`/articles/${article._id}`);
+        } catch (e) {
+            await ctx.render('404');
+        }
     }
 };
 
