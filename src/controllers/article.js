@@ -64,27 +64,30 @@ const fn_newArticle = async ctx => {
 };
 
 const fn_deleteArticle = async ctx => {
-    if (!ctx.session.user.isAdmin) {
-        return await ctx.render('need-Admin');
+    try {
+        if (!ctx.session.user.isAdmin) {
+            throw new Error();
+        }
+        await Articles.findByIdAndDelete(ctx.params.id);
+        await ctx.redirect('/articles');
+    } catch (e) {
+        await ctx.render('need-Admin');
     }
-    const _id = ctx.params.id,
-        deleteArticle = await Articles.findByIdAndDelete({ _id });
-    if (!deleteArticle) {
-        await ctx.render('fail-on-delete');
-    }
-    await ctx.redirect('/articles');
 };
 
 const fn_editArticle = async ctx => {
-    if (!ctx.session.user.isAdmin) {
-        return await ctx.render('need-Admin');
-    }
-    const _id = ctx.params.id,
-        article = await Articles.findById({ _id });
+    const article = await Articles.findById(ctx.params.id);
     if (ctx.method === 'GET') {
-        await ctx.render('editArticle', {
-            article
-        });
+        try {
+            if (!ctx.session.user.isAdmin) {
+                throw new Error();
+            }
+            await ctx.render('editArticle', {
+                article
+            });
+        } catch (e) {
+            await ctx.render('need-Admin');
+        }
     } else if (ctx.method === 'POST') {
         try {
             article.title = ctx.request.body.title;
@@ -93,7 +96,7 @@ const fn_editArticle = async ctx => {
             await article.save();
             await ctx.redirect(`/articles/${article._id}`);
         } catch (e) {
-            await ctx.render('404');
+            await ctx.render('fail-on-edit');
         }
     }
 };
@@ -112,7 +115,7 @@ const fn_like = async ctx => {
         await likesAndDislikes.like(ctx.session.user.id);
         await ctx.redirect('back');
     } catch (e) {
-        await ctx.render('404');
+        await ctx.render('fail-on-like-dislike');
     }
 };
 
@@ -126,11 +129,14 @@ const fn_dislike = async ctx => {
         );
         if (hasLikedOrDisliked) {
             throw new Error();
+            // throw new Error('has liked or disliked');
         }
         await likesAndDislikes.dislike(ctx.session.user.id);
         await ctx.redirect('back');
     } catch (e) {
-        await ctx.render('404');
+        await ctx.render('fail-on-like-dislike');
+        // await ctx.render('fail-on-like-dislike',
+        // message: e);
     }
 };
 
