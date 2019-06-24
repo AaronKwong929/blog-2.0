@@ -11,7 +11,7 @@ const fn_signin = async ctx => {
                 user = await User.findOne({ email }),
                 isMatch = await bcrypt.compare(password, user.password);
             if (!user || !isMatch) {
-                throw new Error();
+                throw new Error('登陆失败');
             }
             ctx.session.user = {
                 id: user._id,
@@ -24,7 +24,9 @@ const fn_signin = async ctx => {
             await user.save();
             await ctx.redirect('/me');
         } catch (e) {
-            await ctx.render('fail-on-signin');
+            await ctx.render('error', {
+                e
+            });
         }
     }
 };
@@ -45,7 +47,9 @@ const fn_signup = async ctx => {
             };
             await ctx.redirect('/me');
         } catch (e) {
-            await ctx.render('failed-on-signup');
+            await ctx.render('error', {
+                e
+            });
         }
     }
 };
@@ -58,7 +62,7 @@ const fn_logout = async ctx => {
 const fn_me = async ctx => {
     try {
         if (!ctx.session.user) {
-            throw new Error();
+            throw new Error('请先登录');
         }
         const user = ctx.session.user;
         await ctx.render('profile', {
@@ -68,23 +72,27 @@ const fn_me = async ctx => {
             isAdmin: user.isAdmin
         });
     } catch (e) {
-        ctx.render('need-to-login');
+        await ctx.render('error', {
+            e
+        });
     }
 };
 
 const fn_editUser = async ctx => {
-    const user = ctx.session.user;
     if (ctx.method === 'GET') {
         try {
             if (!ctx.session.user) {
-                throw new Error();
+                throw new Error('请先登录');
             }
+            const user = ctx.session.user;
             await ctx.render('userEdit', {
                 name: user.name,
                 email: user.email
             });
         } catch (e) {
-            await ctx.render('need-to-login');
+            await ctx.render('error', {
+                e
+            });
         }
     } else if (ctx.method === 'POST') {
         try {
@@ -98,7 +106,9 @@ const fn_editUser = async ctx => {
             ctx.session.user.name = name;
             return await ctx.redirect('/me');
         } catch (e) {
-            await ctx.render('fail-on-user-edit');
+            await ctx.render('error', {
+                e
+            });
         }
     }
 };
