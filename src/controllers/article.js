@@ -5,11 +5,16 @@ const Likes = require('../models/Likes');
 const fn_articles = async ctx => {
     try {
         const articles = await Articles.find({});
+        if (JSON.stringify(articles) === 'null') {
+            throw new Error('不存在文章');
+        }
         await ctx.render('articles', {
             articles
         });
     } catch (e) {
-        await ctx.render('failed-on-fetch-articles');
+        await ctx.render('error', {
+            e
+        });
     }
 };
 
@@ -18,8 +23,8 @@ const fn_readArticle = async ctx => {
     const _id = ctx.params.id;
     try {
         const article = await Articles.findById({ _id });
-        if (!article) {
-            throw new Error();
+        if (JSON.stringify(article) === 'null') {
+            throw new Error('不存在文章');
         }
         const comments = await Comments.find({ articleID: _id });
         const likesAndDislikes = await Likes.findOne({ ArticleID: _id });
@@ -35,7 +40,9 @@ const fn_readArticle = async ctx => {
             hasLikedOrDisliked
         });
     } catch (e) {
-        await ctx.render('fail-on-no-article');
+        await ctx.render('error', {
+            e
+        });
     }
 };
 
@@ -43,11 +50,13 @@ const fn_newArticle = async ctx => {
     if (ctx.method === 'GET') {
         try {
             if (!ctx.session.user.isAdmin) {
-                throw new Error();
+                throw new Error('需要管理员权限');
             }
             await ctx.render('newArticle');
         } catch (e) {
-            await ctx.render('need-admin');
+            await ctx.render('error', {
+                e
+            });
         }
     } else if (ctx.method === 'POST') {
         try {
@@ -58,7 +67,9 @@ const fn_newArticle = async ctx => {
             await Likes.create(Object.assign({ ArticleID: article._id }));
             await ctx.redirect(`/articles/${article._id}`);
         } catch (e) {
-            await ctx.render('fail-on-new');
+            await ctx.render('error', {
+                e
+            });
         }
     }
 };
@@ -66,14 +77,16 @@ const fn_newArticle = async ctx => {
 const fn_deleteArticle = async ctx => {
     try {
         if (!ctx.session.user.isAdmin) {
-            throw new Error();
+            throw new Error('需要管理员权限');
         }
         await Articles.findByIdAndDelete(ctx.params.id);
         await Comments.findOneAndDelete({ articleID: ctx.params.id });
         await Likes.findOneAndDelete({ articleID: ctx.params.id });
         await ctx.redirect('/articles');
     } catch (e) {
-        await ctx.render('need-Admin');
+        await ctx.render('error', {
+            e
+        });
     }
 };
 
@@ -82,13 +95,15 @@ const fn_editArticle = async ctx => {
     if (ctx.method === 'GET') {
         try {
             if (!ctx.session.user.isAdmin) {
-                throw new Error();
+                throw new Error('需要管理员权限');
             }
             await ctx.render('editArticle', {
                 article
             });
         } catch (e) {
-            await ctx.render('need-Admin');
+            await ctx.render('error', {
+                e
+            });
         }
     } else if (ctx.method === 'POST') {
         try {
@@ -98,47 +113,56 @@ const fn_editArticle = async ctx => {
             await article.save();
             await ctx.redirect(`/articles/${article._id}`);
         } catch (e) {
-            await ctx.render('fail-on-edit');
+            await ctx.render('error', {
+                e
+            });
         }
     }
 };
 
 const fn_like = async ctx => {
-    const likesAndDislikes = await Likes.findOne({
-        ArticleID: ctx.params.id
-    });
     try {
+        if (!ctx.session.user) {
+            throw new Error('请先登陆再进行操作');
+        }
+        const likesAndDislikes = await Likes.findOne({
+            ArticleID: ctx.params.id
+        });
         const hasLikedOrDisliked = await likesAndDislikes.findUser(
             ctx.session.user.id
         );
         if (hasLikedOrDisliked) {
-            throw new Error();
+            throw new Error('您已操作');
         }
         await likesAndDislikes.like(ctx.session.user.id);
         await ctx.redirect('back');
     } catch (e) {
-        await ctx.render('fail-on-like-dislike');
+        await ctx.render('error', {
+            e
+        });
     }
 };
 
 const fn_dislike = async ctx => {
-    const likesAndDislikes = await Likes.findOne({
-        ArticleID: ctx.params.id
-    });
     try {
+        const likesAndDislikes = await Likes.findOne({
+            ArticleID: ctx.params.id
+        });
+        if (!ctx.session.user) {
+            throw new Error('请先登陆再进行操作');
+        }
         const hasLikedOrDisliked = await likesAndDislikes.findUser(
             ctx.session.user.id
         );
         if (hasLikedOrDisliked) {
-            throw new Error();
-            // throw new Error('has liked or disliked');
+            throw new Error('您已操作');
         }
         await likesAndDislikes.dislike(ctx.session.user.id);
         await ctx.redirect('back');
     } catch (e) {
-        await ctx.render('fail-on-like-dislike');
-        // await ctx.render('fail-on-like-dislike',
-        // message: e);
+        await ctx.render('error', {
+            e
+        });
     }
 };
 
