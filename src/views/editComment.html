@@ -4,9 +4,6 @@
         <div class="middle">
             {% block sub %}
             <form action="/articles/{{ articleID }}/comments/{{ comment._id }}/edit" method="POST">
-                <!-- <p>
-                    <input name="title" type="text" value="{{ article.title }}" />
-                </p> -->
                 <p>
                     <textarea name="content"></textarea>
                 </p>
@@ -17,9 +14,6 @@
             </form>
             {% endblock %}
         </div>
-    </div>
-    <div class="left-container">
-        <h1>指示色</h1>
     </div>
     <div class="right-container">
         <h1>指示色</h1>
