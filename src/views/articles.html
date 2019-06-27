@@ -1,18 +1,19 @@
 {% extends "src/views/base.html" %} {% block main %}
-<div class="container clearfix">
-    <div class="middle-container">
-        <div class="middle">
-            {% block sub %}
-            {% for article in articles %}
-            <p>
-                <a href="{{ "/articles/" + article._id  }}">{{ article.title }} &nbsp; {{ article.author }} &nbsp; {{ article.createdAt }}</a>
-            </p>
-            {% endfor %}
-            {% endblock %}
+<div class="sub-jumbotron clearfix" id="articles-html">
+    <div class="sub-tron-container">
+        <div class="sub-tron-title">
+            文章列表
+        </div>
+        <div class="sub-tron-subtitle">
+            Article catalogs
         </div>
     </div>
-    <div class="right-container">
-        <h1>指示色</h1>
-    </div>
+</div>
+<div class="list-container">
+    {% for article in articles %}
+        <div class="list-group-item">
+                <a href="/articles/{{article._id}}">{{ article.title }}</a>
+        </div>
+    {% endfor %}
 </div>
 {% endblock %}

@@ -1,9 +1,8 @@
-/**  全局  */
 * {
     margin: 0;
 }
 
-/* 伪类清除浮动 */
+/** 清除浮动 */
 .clearfix::after {
     display: block;
     visibility: hidden;
@@ -12,14 +11,14 @@
     height: 0;
 }
 
-/* 垂直居中模组 */
+/** 垂直居中 */
 .horizontal-vertical-centralize {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* 列表/链接清除多余样式 */
+/** 列表/链接清除多余样式 */
 li {
     float: left;
     margin-right: 30px;
@@ -68,9 +67,6 @@ textarea {
     margin-bottom: 15px;
 }
 
-.alert {
-}
-
 .text {
     text-align: center;
     margin: 0 auto;
@@ -117,7 +113,7 @@ textarea {
     float: right;
 }
 
-/**  首页巨幕  */
+/**  首页  */
 .jumbotron {
     background: #336699;
     height: 550px;
@@ -129,13 +125,13 @@ textarea {
     text-align: center;
 }
 
-.title {
+.tron-title {
     font-size: 100px;
     font-weight: 100;
     text-transform: uppercase;
 }
 
-.sub-title {
+.tron-subtitle {
     font-size: 60px;
     font-weight: 200;
 }
@@ -160,4 +156,66 @@ textarea {
     height: 550px;
     margin-left: -300px;
     text-align: center;
+}
+
+/** 文章列表页 */
+.list-container {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.list-group-item {
+    margin-bottom: -1px; /* 消除底部border */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.list-group-item a {
+    display: block;
+    color: black;
+    background: gold;
+    padding: 10px 0;
+}
+
+
+.list-group-item a:hover {
+    background-color: #ddd;
+}
+
+.list-group-item:first-child {
+    margin-top: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.list-group-item:last-child {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+/** 副页巨幕 */
+.sub-jumbotron {
+    height: 300px;
+}
+
+.sub-tron-container {
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+#articles-html {
+    background-color: aquamarine;
+}
+
+.sub-tron-title {
+    font-size: 60px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.sub-tron-subtitle {
+    font-size: 30px;
+    font-weight: 200;
+    text-transform: uppercase;
 }
