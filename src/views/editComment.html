@@ -15,7 +15,7 @@
             {% block sub %}
             <form action="/articles/{{ articleID }}/comments/{{ comment._id }}/edit" method="POST">
                 <p>
-                    <textarea name="content"></textarea>
+                    <textarea name="content" placeholder="{{ comment.content }}"></textarea>
                 </p>
                 <button type="submit" class="btn">
                     修改

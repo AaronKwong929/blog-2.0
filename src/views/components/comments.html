@@ -11,11 +11,9 @@
     <div class="comments">
         {% for comment in comments %}
             <div class="comment">
-                <p>
-                    {{ comment.author }}
-                    <p>发布于：{{ comment.updatedAt }}</p>
+                <div class="comment-author">{{ comment.author }}</div>
+                <div class="time">发布于：{{ comment.updatedAt }}</div>
                     {{ marked(comment.content) | safe }}
-                </p>
                 <div class="btn-group">
                     {% if user.name == "admin" or user.name == comment.author %}
                     <a href="/articles/{{ article._id }}/comments/{{ comment._id }}/delete" class="btn">删除</a>

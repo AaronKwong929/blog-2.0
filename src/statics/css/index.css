@@ -121,6 +121,7 @@ textarea {
     float: right;
 }
 
+
 /**  首页  */
 .jumbotron {
     background: #336699;
@@ -164,6 +165,7 @@ textarea {
     text-align: center;
 }
 
+
 /** 文章列表页 */
 .list-container {
     margin: 0 auto;
@@ -196,10 +198,12 @@ textarea {
     margin-bottom: 10px;
 }
 
+
 /** 副页巨幕 */
 .sub-jumbotron {
     height: 300px;
 }
+
 
 .sub-tron-container {
     padding-top: 50px;
@@ -218,6 +222,7 @@ textarea {
     text-transform: uppercase;
 }
 
+/** 各个页副巨幕 */
 #articles-html {
     background-color: aquamarine;
 }
@@ -270,6 +275,25 @@ textarea {
     background-color: lightslategrey;
 }
 
+/** 文章详情页 */
+.time {
+    font-size: 15px;
+}
+
+.article {
+
+}
+
+.article-title {
+    font-weight: 300;
+    font-size: 50px;
+}
+
+.article-author {
+    font-weight: 300;
+    font-size: 25px;
+}
+
 /** 评论区 */
 .comments {
     border-top: 10px solid white;
@@ -283,6 +307,7 @@ textarea {
     border-bottom: none;
 }
 
-/** 登陆/注册页面 */
-
-
+.comment-author {
+    font-weight: 300;
+    font-size: 25px;
+}

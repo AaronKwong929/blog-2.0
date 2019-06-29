@@ -9,14 +9,14 @@
             </div>
         </div>
 </div>
-<div class="container clearfix">
+<div class="clearfix">
     <div class="middle-container">
         <div class="middle">
-            <div>
-                <h1>{{ article.title }}</h1>
-                <h2>{{ article.author }}</h2>
-                <h3>创建于： {{ article.createdAt }}</h3>
-                <h3>修改于： {{ article.updatedAt }}</h3>
+            <div class="article">
+                <div class="article-title">{{ article.title }}</div>
+                <div class="article-author">{{ article.author }}</div>
+                <div class="time">发布于： {{ article.createdAt }}</div>
+                <div class="time">修改于： {{ article.updatedAt }}</div>
                 <br />
                 {{ marked(article.content) | safe }}
             </div>
