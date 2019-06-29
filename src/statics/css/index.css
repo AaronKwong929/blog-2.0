@@ -147,19 +147,18 @@ textarea {
 /**  两列布局  */
 .middle-container {
     width: 100%;
-    background: #eee;
     float: left;
 }
 
 .middle {
     margin: 0 310px;
-    background: #ddd;
+    background: #eee;
     text-align: center;
 }
 
 .right-container {
     float: left;
-    background: #ddd;
+    background: #eee;
     width: 300px;
     margin-left: -300px;
     text-align: center;
@@ -251,17 +250,33 @@ textarea {
     background-color: lightseagreen;
 }
 
-/** 评论区 */
-.comment-container {
-    
+#article-html {
+    background-color: lightcyan;
 }
 
+#article-edit-html {
+    background-color: lightgreen;
+}
+
+#comment-edit-html {
+    background-color: lightgreen;
+}
+
+#error-html {
+    background-color: rgb(241, 111, 111)
+}
+
+#notfound-html {
+    background-color: lightslategrey;
+}
+
+/** 评论区 */
 .comments {
-    border-top: 10px solid #eee;
+    border-top: 10px solid white;
 }
 
 .comment {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid white;
 }
 
 .comment:last-child {

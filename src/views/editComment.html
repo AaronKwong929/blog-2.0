@@ -1,4 +1,14 @@
 {% extends "src/views/base.html" %} {% block main %}
+<div class="sub-jumbotron clearfix" id="comment-edit-html">
+        <div class="sub-tron-container">
+            <div class="sub-tron-title">
+                修改评论
+            </div>
+            <div class="sub-tron-subtitle">
+                Edit comment
+            </div>
+        </div>
+</div>
 <div class="container clearfix">
     <div class="middle-container">
         <div class="middle">
@@ -10,13 +20,10 @@
                 <button type="submit" class="btn">
                     修改
                 </button>
-                <a class="btn" href="/articles/{{ articleID }}">返回文章</a>
+                <a class="btn" href="/articles/{{ articleID }}">返回</a>
             </form>
             {% endblock %}
         </div>
-    </div>
-    <div class="right-container">
-        <h1>指示色</h1>
     </div>
 </div>
 {% endblock %}

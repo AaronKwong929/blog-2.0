@@ -1,4 +1,14 @@
 {% extends "src/views/base.html" %} {% block main %}
+<div class="sub-jumbotron clearfix" id="article-edit-html">
+        <div class="sub-tron-container">
+            <div class="sub-tron-title">
+                修改文章
+            </div>
+            <div class="sub-tron-subtitle">
+                Edit article
+            </div>
+        </div>
+</div>
 <div class="container clearfix">
     <div class="middle-container">
         <div class="middle">
@@ -20,13 +30,10 @@
                 <button type="submit" class="btn">
                     修改
                 </button>
-                <a class="btn" href="/articles">返回列表</a>
+                <a class="btn" href="/articles/{{ article._id }}">返回</a>
             </form>
             {% endblock %}
         </div>
-    </div>
-    <div class="right-container">
-        <h1>指示色</h1>
     </div>
 </div>
 {% endblock %}

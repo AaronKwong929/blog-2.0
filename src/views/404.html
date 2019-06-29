@@ -1,14 +1,12 @@
 {% extends "src/views/base.html" %} {% block main %}
-<div class="container clearfix">
-    <div class="middle-container">
-        <div class="middle">
-            {% block sub %}
-            <h1>404 Page not found</h1>
-            {% endblock %}
+<div class="sub-jumbotron clearfix" id="notfound-html">
+        <div class="sub-tron-container">
+            <div class="sub-tron-title">
+                404
+            </div>
+            <div class="sub-tron-subtitle">
+                Not found
+            </div>
         </div>
-    </div>
-    <div class="right-container">
-        <h1>指示色</h1>
-    </div>
 </div>
 {% endblock %}

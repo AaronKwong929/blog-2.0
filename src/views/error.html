@@ -1,14 +1,19 @@
 {% extends "src/views/base.html" %} {% block main %}
+<div class="sub-jumbotron clearfix" id="error-html">
+        <div class="sub-tron-container">
+            <div class="sub-tron-title">
+                错误
+            </div>
+            <div class="sub-tron-subtitle">
+                Error
+            </div>
+        </div>
+</div>
 <div class="container clearfix">
     <div class="middle-container">
         <div class="middle">
-            {% block sub %}
-                <h1>{{ e }}</h1>
-            {% endblock %}
+            <h1>{{ e }}</h1>
         </div>
-    </div>
-    <div class="right-container">
-        <h1>指示色</h1>
     </div>
 </div>
 {% endblock %}
