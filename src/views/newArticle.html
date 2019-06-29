@@ -1,4 +1,14 @@
 {% extends "src/views/base.html" %} {% block main %}
+<div class="sub-jumbotron clearfix" id="new-article-html">
+        <div class="sub-tron-container">
+            <div class="sub-tron-title">
+                新建文章
+            </div>
+            <div class="sub-tron-subtitle">
+                new article
+            </div>
+        </div>
+</div>
 <div class="clearfix">
     <div class="middle-container clearfix">
         <div class="middle">
@@ -15,7 +25,7 @@
                     />
                 </p>
                 <p>
-                    <textarea name="content"></textarea>
+                    <textarea name="content" placeholder="Content"></textarea>
                 </p>
                 <button type="submit" class="btn">
                     发表

@@ -1,4 +1,14 @@
 {% extends "src/views/base.html" %} {% block main %}
+<div class="sub-jumbotron clearfix" id="login-html">
+        <div class="sub-tron-container">
+            <div class="sub-tron-title">
+                登陆
+            </div>
+            <div class="sub-tron-subtitle">
+                Login
+            </div>
+        </div>
+</div>
 <div class="container clearfix">
     <div class="middle-container">
         <div class="middle">
@@ -14,19 +24,16 @@
                         placeholder="Password"
                     />
                 </p>
-                <button type="submit" class="btn">
+                <div class="btn-group">
+                    <button type="submit" class="btn">
                     登陆
-                </button>
-                <a href="/" class="btn">返回</a>
-                <p>
-                    <a href="/signup">点击此处进行注册</a>
-                </p>
+                    </button>
+                    <a href="/" class="btn">返回</a>
+                </div>
+                <a href="/signup">点击此处进行注册</a>
             </form>
             {% endblock %}
         </div>
-    </div>
-    <div class="right-container">
-        <h1>指示色</h1>
     </div>
 </div>
 {% endblock %}

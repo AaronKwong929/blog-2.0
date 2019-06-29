@@ -52,7 +52,7 @@ input {
 }
 
 .btn {
-    background-color: lightpink;
+    background-color: #4891da;
     border: none;
     cursor: pointer;
     border-radius: 5px;
@@ -66,9 +66,13 @@ input {
 }
 
 textarea {
-    height: 300px;
+    height: 250px;
     width: 500px;
-    margin-bottom: 15px;
+    margin: 15px 0;
+
+    padding: 10px 30px;
+    border-radius: 5px;
+    outline-style: none;
 }
 
 .text {
@@ -143,21 +147,20 @@ textarea {
 /**  两列布局  */
 .middle-container {
     width: 100%;
-    background: lightyellow;
+    background: #eee;
     float: left;
 }
 
 .middle {
-    margin: 0 300px;
-    background: lightgreen;
+    margin: 0 310px;
+    background: #ddd;
     text-align: center;
 }
 
 .right-container {
     float: left;
-    background: lightblue;
+    background: #ddd;
     width: 300px;
-    /* height: 550px; */
     margin-left: -300px;
     text-align: center;
 }
@@ -228,20 +231,43 @@ textarea {
     background-color: lightcoral;
 }
 
+#profile-html {
+    background-color: lightsalmon;
+}
+
+#new-article-html {
+    background-color: lightpink;
+}
+
+#user-edit-html {
+    background-color: lightgray;
+}
+
+#login-html {
+    background-color: lightsteelblue;
+}
+
+#signup-html {
+    background-color: lightseagreen;
+}
+
 /** 评论区 */
 .comment-container {
     
 }
 
 .comments {
-    border-top: 10px solid lightyellow;
+    border-top: 10px solid #eee;
 }
 
 .comment {
-    border-bottom: 1px solid lightyellow;
+    border-bottom: 1px solid #eee;
 }
 
 .comment:last-child {
     border-bottom: none;
 }
+
+/** 登陆/注册页面 */
+
 

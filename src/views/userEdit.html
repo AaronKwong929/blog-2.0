@@ -1,9 +1,17 @@
 {% extends "src/views/base.html" %} {% block main %}
+<div class="sub-jumbotron clearfix" id="user-edit-html">
+        <div class="sub-tron-container">
+            <div class="sub-tron-title">
+                修改个人信息
+            </div>
+            <div class="sub-tron-subtitle">
+                Profile modify
+            </div>
+        </div>
+</div>
 <div class="container clearfix">
     <div class="middle-container">
         <div class="middle">
-            {% block sub %}
-            <h1>修改个人信息</h1>
             <div>
                 <form action="/me/edit" method="POST">
                     <p>
@@ -24,11 +32,7 @@
                     <a href="/me" class="btn">返回</a>
                 </form>
             </div>
-            {% endblock %}
         </div>
-    </div>
-    <div class="right-container">
-        <h1>指示色</h1>
     </div>
 </div>
 {% endblock %}
