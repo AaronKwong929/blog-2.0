@@ -47,6 +47,10 @@ input {
     width: 200px;
 }
 
+.btn-group {
+    padding: 10px 0;
+}
+
 .btn {
     background-color: lightpink;
     border: none;
@@ -139,7 +143,7 @@ textarea {
 /**  两列布局  */
 .middle-container {
     width: 100%;
-    background: lightcoral;
+    background: lightyellow;
     float: left;
 }
 
@@ -153,7 +157,7 @@ textarea {
     float: left;
     background: lightblue;
     width: 300px;
-    height: 550px;
+    /* height: 550px; */
     margin-left: -300px;
     text-align: center;
 }
@@ -223,3 +227,21 @@ textarea {
 #about-html {
     background-color: lightcoral;
 }
+
+/** 评论区 */
+.comment-container {
+    
+}
+
+.comments {
+    border-top: 10px solid lightyellow;
+}
+
+.comment {
+    border-bottom: 1px solid lightyellow;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+

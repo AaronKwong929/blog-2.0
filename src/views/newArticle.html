@@ -1,6 +1,6 @@
 {% extends "src/views/base.html" %} {% block main %}
-<div class="container clearfix">
-    <div class="middle-container">
+<div class="clearfix">
+    <div class="middle-container clearfix">
         <div class="middle">
             {% block sub %}
             <form action="/new" method="POST">
@@ -24,9 +24,6 @@
             </form>
             {% endblock %}
         </div>
-    </div>
-    <div class="right-container">
-        <h1>指示色</h1>
     </div>
 </div>
 {% endblock %}

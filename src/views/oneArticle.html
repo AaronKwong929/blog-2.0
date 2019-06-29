@@ -2,23 +2,24 @@
 <div class="container clearfix">
     <div class="middle-container">
         <div class="middle">
-            {% block sub %}
             <div>
                 <h1>{{ article.title }}</h1>
                 <h2>{{ article.author }}</h2>
                 <h3>创建于： {{ article.createdAt }}</h3>
                 <h3>修改于： {{ article.updatedAt }}</h3>
+                <br />
                 {{ marked(article.content) | safe }}
             </div>
-            {% if user.isAdmin %}
-            <a class="btn" href="{{ "/articles/" + article._id + "/edit" }}">编辑</a>
-            <a class="btn" href="{{ "/articles/" + article._id + "/delete" }}">删除</a>
-            {% endif %}
-            <a class="btn" href="/articles">返回列表</a>
-            {% if user %}
-            <button type="button" class="btn" id="btn1" onclick="display()">评论</button>
-            {% endif %}
-            {% endblock %}
+            <div class="btn-group">
+                {% if user.isAdmin %}
+                <a class="btn" href="{{ "/articles/" + article._id + "/edit" }}">编辑</a>
+                <a class="btn" href="{{ "/articles/" + article._id + "/delete" }}">删除</a>
+                {% endif %}
+                {% if user %}
+                <button type="button" class="btn" id="btn1" onclick="display()">评论</button>
+                {% endif %}
+                <a class="btn" href="/articles">返回列表</a>
+                </div>
             {% include "src/views/components/comments.html" %}
         </div>
     </div>
