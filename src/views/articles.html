@@ -11,9 +11,7 @@
 </div>
 <div class="list-container">
     {% for article in articles %}
-        <div class="list-group-item">
-                <a href="/articles/{{article._id}}">{{ article.title }}</a>
-        </div>
+        <a href="/articles/{{article._id}}">{{ article.title }}</a>
     {% endfor %}
 </div>
 {% endblock %}

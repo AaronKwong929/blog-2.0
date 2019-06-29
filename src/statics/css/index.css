@@ -48,7 +48,7 @@ input {
 }
 
 .btn {
-    background-color: lightgreen;
+    background-color: lightpink;
     border: none;
     cursor: pointer;
     border-radius: 5px;
@@ -145,7 +145,7 @@ textarea {
 
 .middle {
     margin: 0 300px;
-    background: gold;
+    background: lightgreen;
     text-align: center;
 }
 
@@ -164,34 +164,30 @@ textarea {
     width: 50%;
 }
 
-.list-group-item {
-    margin-bottom: -1px; /* 消除底部border */
-    background-color: #fff;
-    border: 1px solid #ddd;
+.list-container a {
+    display: block;
+    color: black;
+    background: #eee;
+    padding: 10px 0;
+    border: 1px solid black;
+    margin-bottom: -1px;
     text-align: center;
 }
 
-.list-group-item a {
-    display: block;
-    color: black;
-    background: gold;
-    padding: 10px 0;
+.list-container a:hover {
+    background-color: #fff;
 }
 
-
-.list-group-item a:hover {
-    background-color: #ddd;
-}
-
-.list-group-item:first-child {
+.list-container a:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     margin-top: 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
 }
-.list-group-item:last-child {
+
+.list-container a:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     margin-bottom: 10px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
 }
 
 /** 副页巨幕 */
@@ -200,12 +196,8 @@ textarea {
 }
 
 .sub-tron-container {
-    padding-top: 30px;
-    padding-left: 30px;
-}
-
-#articles-html {
-    background-color: aquamarine;
+    padding-top: 50px;
+    padding-left: 50px;
 }
 
 .sub-tron-title {
@@ -218,4 +210,16 @@ textarea {
     font-size: 30px;
     font-weight: 200;
     text-transform: uppercase;
+}
+
+#articles-html {
+    background-color: aquamarine;
+}
+
+#help-html {
+    background-color: lightblue;
+}
+
+#about-html {
+    background-color: lightcoral;
 }
