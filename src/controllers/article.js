@@ -6,17 +6,18 @@ const fn_articles = async ctx => {
     try {
         const pageSize = 2;
         const currentPage = parseInt(ctx.query.page) || 1;
-        const allPostsCount = await PostModel.count();
+        const allPostsCount = await Articles.countDocuments();
    		const pageCount = Math.ceil(allPostsCount / pageSize);
         const articles = await Articles.find({})
             .skip((currentPage - 1) * pageSize)
             .limit(pageSize);
-        console.log(articles.length);
         if (JSON.stringify(articles) === 'null' || articles.length === 0) {
             throw new Error('不存在文章');
         }
         await ctx.render('articles', {
-            articles
+            articles,
+            currentPage,
+            pageCount
         });
     } catch (e) {
         await ctx.render('error', {
