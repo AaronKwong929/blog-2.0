@@ -115,7 +115,6 @@ textarea {
     height: 100px;
     padding: 30px 100px;
     color: #fff;
-    margin-top: 10px;
 }
 
 .social-links {
@@ -203,7 +202,6 @@ textarea {
 /** 副页巨幕 */
 .sub-jumbotron {
     height: 300px;
-    margin-bottom: 10px;
 }
 
 
@@ -285,6 +283,7 @@ textarea {
 .article {
     border-radius: 15px;
     background-color: lightgreen;
+    margin: 10px 0;
 }
 
 .article-title {
@@ -360,6 +359,7 @@ text-align: center;
 .like-dislike {
     border-radius: 15px;
     background: lightgreen;
+    margin: 10px 0;
 }
 
 /** 分享 */

@@ -13,6 +13,7 @@
     <div class="middle-container">
         <div class="middle">
             <div class="btn-group">
+                <h2>最后登录于：{{ user.lastLogin }}</h2>
                 {% if user.isAdmin %}
                 <a href="/new" class="btn">新建文章</a>
                 {% endif %}
@@ -20,7 +21,6 @@
                 <a href="/me/edit" class="btn">修改个人信息</a>
                 <a href="/logout" class="btn">注销</a>
             </div>
-            <h3>最后登录于：{{ user.lastLogin }}</h3>
         </div>
     </div>
 </div>
