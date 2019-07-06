@@ -3,7 +3,16 @@ const bcrypt = require('bcryptjs');
 
 const fn_signin = async ctx => {
     if (ctx.method === 'GET') {
-        await ctx.render('signin');
+        try {
+            if (ctx.session.user) {
+                throw new Error('您已登陆');
+            }
+            await ctx.render('signin');
+        } catch (e) {
+            await ctx.render('error', {
+                e
+            });
+        }
     } else if (ctx.method === 'POST') {
         try {
             const email = ctx.request.body.email,
@@ -33,7 +42,16 @@ const fn_signin = async ctx => {
 
 const fn_signup = async ctx => {
     if (ctx.method === 'GET') {
+        try {
+            if (ctx.session.user) {
+                throw new Error('您已登陆');
+            }
         await ctx.render('signup');
+        } catch (e) {
+            await ctx.render('error', {
+                e
+            });
+        }
     } else if (ctx.method === 'POST') {
         const user = new User(ctx.request.body);
         try {
