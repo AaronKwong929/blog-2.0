@@ -19,7 +19,6 @@
                 <div class="time">修改于： {{ article.updatedAt }}</div>
                 <br />
                 {{ marked(article.content) | safe }}
-            
                 <div class="btn-group">
                     {% if user.isAdmin %}
                     <a class="btn" href="{{ "/articles/" + article._id + "/edit" }}">编辑</a>
