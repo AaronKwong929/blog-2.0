@@ -4,10 +4,13 @@ const Likes = require('../models/Likes');
 
 const fn_articles = async ctx => {
     try {
-        const pageSize = 2;
+        const pageSize = 5;
         const currentPage = parseInt(ctx.query.page) || 1;
-        const allPostsCount = await Articles.countDocuments();
-   		const pageCount = Math.ceil(allPostsCount / pageSize);
+        const allArticlesCount = await Articles.countDocuments();
+        const pageCount = Math.ceil(allArticlesCount / pageSize);
+        const pageStart = currentPage - 2 > 0 ? currentPage - 2 : 1;
+        const pageEnd = currentPage + 2 >= pageCount ? pageCount : currentPage + 2;
+        const baseUrl = `${ctx.path}?page=`;
         const articles = await Articles.find({})
             .skip((currentPage - 1) * pageSize)
             .limit(pageSize);
@@ -17,7 +20,10 @@ const fn_articles = async ctx => {
         await ctx.render('articles', {
             articles,
             currentPage,
-            pageCount
+            pageCount,
+            pageStart,
+            pageEnd,
+            baseUrl
         });
     } catch (e) {
         await ctx.render('error', {

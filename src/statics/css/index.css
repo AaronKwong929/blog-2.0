@@ -160,7 +160,7 @@ textarea {
 .right-container {
     float: left;
     background: #eee;
-    width: 300px;
+    width: 290px;
     margin-left: -300px;
     text-align: center;
 }
@@ -281,7 +281,8 @@ textarea {
 }
 
 .article {
-
+    border-radius: 15px;
+    background-color: lightgreen;
 }
 
 .article-title {
@@ -301,6 +302,8 @@ textarea {
 
 .comment {
     border-bottom: 1px solid white;
+    border-radius: 15px;
+    background-color: blueviolet;
 }
 
 .comment:last-child {
@@ -314,5 +317,33 @@ textarea {
 
 /** 分页器 */
 .pagination {
-    
+text-align: center;
+}
+
+.pagination-btn {
+    background-color: #4891da;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.current-page {
+    background-color: #1a538b;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin-bottom: 10px;
 }

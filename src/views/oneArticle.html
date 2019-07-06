@@ -19,16 +19,17 @@
                 <div class="time">修改于： {{ article.updatedAt }}</div>
                 <br />
                 {{ marked(article.content) | safe }}
-            </div>
-            <div class="btn-group">
-                {% if user.isAdmin %}
-                <a class="btn" href="{{ "/articles/" + article._id + "/edit" }}">编辑</a>
-                <a class="btn" href="{{ "/articles/" + article._id + "/delete" }}">删除</a>
-                {% endif %}
-                {% if user %}
-                <button type="button" class="btn" id="btn1" onclick="display()">评论</button>
-                {% endif %}
-                <a class="btn" href="/articles">返回列表</a>
+            
+                <div class="btn-group">
+                    {% if user.isAdmin %}
+                    <a class="btn" href="{{ "/articles/" + article._id + "/edit" }}">编辑</a>
+                    <a class="btn" href="{{ "/articles/" + article._id + "/delete" }}">删除</a>
+                    {% endif %}
+                    {% if user %}
+                    <button type="button" class="btn" id="btn1" onclick="display()">评论</button>
+                    {% endif %}
+                    <a class="btn" href="/articles">返回列表</a>
+                    </div>
                 </div>
             {% include "src/views/components/comments.html" %}
         </div>
