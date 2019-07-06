@@ -44,15 +44,15 @@ const userSchema = new mongoose.Schema({
     },
     createdAt: {
         type: String,
-        default: new Date().getTime()
+        default: new Date().toLocaleString()
     },
     updatedAt: {
         type: String,
-        default: new Date().getTime()
+        default: new Date().toLocaleString()
     },
     lastLogin: {
         type: String,
-        default: new Date().getTime()
+        default: new Date().toLocaleString()
     }
 });
 
@@ -61,7 +61,7 @@ userSchema.pre('save', async function (next) {
     if (user.isModified('password')) {
         user.password = await bcrypt.hash(user.password, 8);
     }
-    const now = new Date().getTime();
+    const now = new Date().toLocaleString();
     if (user.updatedAt !== now) {
         user.updatedAt = now;
     }

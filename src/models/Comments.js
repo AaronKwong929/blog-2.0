@@ -12,17 +12,17 @@ const commentSchema = new mongoose.Schema({
     },
     createdAt: {
         type: String,
-        default: new Date().getTime(),
+        default: new Date().toLocaleString(),
     },
     updatedAt: {
         type: String,
-        default: new Date().getTime(),
+        default: new Date().toLocaleString(),
     }
 });
 
 commentSchema.pre('save', async function (next) {
     const comment = this;
-    const now = new Date().getTime();
+    const now = new Date().toLocaleString();
     if (comment.updatedAt !== now) {
         comment.updatedAt = now;
     }

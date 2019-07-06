@@ -20,17 +20,17 @@ const articleSchema = new mongoose.Schema({
     },
     createdAt: {
         type: String,
-        default: new Date().getTime(),
+        default: new Date().toLocaleString(),
     },
     updatedAt: {
         type: String,
-        default: new Date().getTime(),
+        default: new Date().toLocaleString(),
     }
 });
 
 articleSchema.pre('save', async function (next) {
     const article = this;
-    const now = new Date().getTime();
+    const now = new Date().toLocaleString();
     if (article.updatedAt !== now) {
         article.updatedAt = now;
     }

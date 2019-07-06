@@ -29,7 +29,7 @@ const fn_signin = async ctx => {
                 isAdmin: user.isAdmin,
                 lastLogin: user.lastLogin
             };
-            user.lastLogin = new Date().getTime();
+            user.lastLogin = new Date().toLocaleString();
             await user.save();
             await ctx.redirect('/me');
         } catch (e) {
