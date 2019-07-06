@@ -19,7 +19,6 @@
             {% if pageEnd < pageCount %}
                 <span>&hellip;</span>
             {% endif %}
-            {# 最后一页 #}
             {% if currentPage == pageCount %}
                 <a class="pagination-btn current-page" href="{{ baseUrl + pageCount }}">{{ pageCount }}</a>
             {% else %}
@@ -27,6 +26,6 @@
             {% endif %}
         </div>
     {% else %}
-        <p>没有更多了... </p>
+        <div class="pagination-btn">没有更多了&hellip;</div>
     {% endif %}
 </div>

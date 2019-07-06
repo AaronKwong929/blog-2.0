@@ -115,6 +115,7 @@ textarea {
     height: 100px;
     padding: 30px 100px;
     color: #fff;
+    margin-top: 10px;
 }
 
 .social-links {
@@ -153,13 +154,13 @@ textarea {
 
 .middle {
     margin: 0 310px;
-    background: #eee;
+    background: white;
     text-align: center;
 }
 
 .right-container {
     float: left;
-    background: #eee;
+    background: white;
     width: 290px;
     margin-left: -300px;
     text-align: center;
@@ -202,6 +203,7 @@ textarea {
 /** 副页巨幕 */
 .sub-jumbotron {
     height: 300px;
+    margin-bottom: 10px;
 }
 
 
@@ -301,18 +303,24 @@ textarea {
 }
 
 .comment {
-    border-bottom: 1px solid white;
+    margin-bottom: 10px;
     border-radius: 15px;
-    background-color: blueviolet;
+    background-color: lightgreen;
 }
 
 .comment:last-child {
-    border-bottom: none;
+    margin-bottom: 0;
 }
 
 .comment-author {
     font-weight: 300;
     font-size: 25px;
+}
+
+form {
+    background: lightgreen;
+    border-radius: 15px;
+    margin-top: 10px;
 }
 
 /** 分页器 */
@@ -346,4 +354,17 @@ text-align: center;
     display: inline-block;
     font-size: 15px;
     margin-bottom: 10px;
+}
+
+/** 点赞点踩 */
+.like-dislike {
+    border-radius: 15px;
+    background: lightgreen;
+}
+
+/** 分享 */
+.share {
+    margin-top: 10px;
+    border-radius: 15px;
+    background: lightgreen;
 }
