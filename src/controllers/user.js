@@ -114,14 +114,11 @@ const fn_editUser = async ctx => {
         }
     } else if (ctx.method === 'POST') {
         try {
-            const name = ctx.request.body.name,
-                email = user.email;
+            const email = user.email;
             var password = ctx.request.body.password;
             const newUser = await User.findOne({ email });
-            newUser.name = name;
             newUser.password = password;
             newUser.save();
-            ctx.session.user.name = name;
             return await ctx.redirect('/me');
         } catch (e) {
             await ctx.render('error', {
