@@ -8,6 +8,7 @@ const views = require('koa-views');
 const session = require('koa-session');
 const session_config = require('./src/configs/session');
 const marked = require('marked');
+const markedConfig = require('./src/configs/markedConfig');
 
 const isProduction = process.env.NODE_ENV === 'production';
 if (!isProduction) {
@@ -15,16 +16,7 @@ if (!isProduction) {
     app.use(staticFiles('/src/statics/', __dirname + '/src/statics'));
 }
 
-marked.setOptions({
-    renderer: new marked.Renderer(),
-    gfm: true,
-    tables: true,
-    breaks: false,
-    pedantic: false,
-    sanitize: false,
-    smartLists: true,
-    smartypants: false
-});
+marked.setOptions(markedConfig);
 
 app.keys = ['yooooo'];
 
