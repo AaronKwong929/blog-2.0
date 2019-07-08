@@ -1,4 +1,4 @@
-require('./src/db/mongoose');
+require('./src/configs/mongoose');
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const path = require('path');
