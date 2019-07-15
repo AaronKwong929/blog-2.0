@@ -1,5 +1,3 @@
-# [static-files.js - 用于处理静态资源](https://github.com/AaronKwong929/blog-2.0/blob/master/src/middlewares/static-files.js)
-
 参考自廖雪峰的 node 课程
 
 path, fs, mime

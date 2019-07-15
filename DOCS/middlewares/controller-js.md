@@ -1,5 +1,3 @@
-# [controller.js - 用于注册路由](https://github.com/AaronKwong929/blog-2.0/blob/master/src/middlewares/controller.js)
-
 参考自廖雪峰的 node 课程
 
 ```javascript
