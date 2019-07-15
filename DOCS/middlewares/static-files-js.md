@@ -5,7 +5,7 @@
 path, fs, mime
 
 url 类似于'/static/'  
-dir 类似于\_\_dirname + '/static'
+dir 类似于__dirname + '/static'
 
 ```javascript
 var staticFiles = function(url, dir) {
