@@ -1,4 +1,6 @@
-参考自廖雪峰的 node 课程
+# 关于controller.js
+
+## 参考自廖雪峰的 node 课程
 
 ```javascript
 const addMapping = (router, mapping) => {

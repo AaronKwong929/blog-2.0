@@ -1,6 +1,6 @@
-参考自廖雪峰的 node 课程
+# 关于static-files.js
 
-path, fs, mime
+## 参考自廖雪峰的 node 课程
 
 url 类似于'/static/'  
 dir 类似于__dirname + '/static'
