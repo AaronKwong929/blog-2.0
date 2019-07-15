@@ -1,8 +1,8 @@
 # 此处存放 2.0 开发废案
 
-## Nunjucks 中间件构造
+## 1. nunjucks模板渲染改用为koa-views
 
-|- ./app.js
+/app.js
 
 ```javascript
 const templating = require('./src/middlewares/templating.js');
@@ -15,4 +15,4 @@ app.use(
 );
 ```
 
-|- ./src/middlewares/[templating.js](https://github.com/AaronKwong929/blog-2.0/blob/master/Abolitions/templating.js)
+[/src/middlewares/templating.js](https://github.com/AaronKwong929/blog-2.0/blob/master/Abolitions/templating.js)
