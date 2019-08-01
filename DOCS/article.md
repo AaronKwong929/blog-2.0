@@ -1,6 +1,6 @@
 # 文章相关
 
-## 文章模型设计 -- 参考[数据模型 - models](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/database.md)
+## 文章模型设计 -- 参考[数据模型 - models](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/database.md/#文章模型)
 
 ## 文章列表页
 

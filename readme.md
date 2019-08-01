@@ -2,26 +2,30 @@
 
 ## 项目目录
 
----  
-| - Abolitions  // 废案  
+---
+
+| - Abolitions // 废案  
 | - DOCS  
-&nbsp;&nbsp;&nbsp;&nbsp;| - controllers/  // 控制器文档  
-&nbsp;&nbsp;&nbsp;&nbsp;| - middlewares/  // 中间件文档  
-&nbsp;&nbsp;&nbsp;&nbsp;| - views/  // 静态资源文档  
-&nbsp;&nbsp;&nbsp;&nbsp;| - database.md  // 数据模型  
-&nbsp;&nbsp;&nbsp;&nbsp;| - Q&A.md  // 疑难解答  
-&nbsp;&nbsp;&nbsp;&nbsp;| - statics.md  // 处理静态资源的文档  
-| - src  // 资源目录  
+&nbsp;&nbsp;&nbsp;&nbsp;| - middlewares/ // 中间件  
+&nbsp;&nbsp;&nbsp;&nbsp;| - views/ // 静态资源  
+&nbsp;&nbsp;&nbsp;&nbsp;| - database.md // 数据模型  
+&nbsp;&nbsp;&nbsp;&nbsp;| - article.md // 文章相关
+&nbsp;&nbsp;&nbsp;&nbsp;| - user.md // 用户相关
+&nbsp;&nbsp;&nbsp;&nbsp;| - likeOrDislike.md // 点赞点踩功能  
+&nbsp;&nbsp;&nbsp;&nbsp;| - comment.md // 评论功能  
+&nbsp;&nbsp;&nbsp;&nbsp;| - Q&A.md // 疑难解答  
+| - src // 资源目录  
 &nbsp;&nbsp;&nbsp;&nbsp;| - configs/  
 &nbsp;&nbsp;&nbsp;&nbsp;| - controllers/  
 &nbsp;&nbsp;&nbsp;&nbsp;| - middlewares/  
 &nbsp;&nbsp;&nbsp;&nbsp;| - models/  
 &nbsp;&nbsp;&nbsp;&nbsp;| - statics/  
 &nbsp;&nbsp;&nbsp;&nbsp;| - views/  
-| - app.js  // 总控  
-| - readme.md  // 总文档  
-| - package.json  
----  
+| - app.js // app  
+| - readme.md // 总文档  
+| - package.json
+
+---
 
 ## 文档导航
 
@@ -36,29 +40,28 @@
 [各种废案 - abolitions](https://github.com/AaronKwong929/blog-2.0/tree/master/Abolitions)
 
 [用户相关](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/user.md)
-  
+
 用户注册  
 用户登陆  
 用户注销  
-用户登录状态保持  
+用户登录状态保持
 
 [文章相关](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/article.md)
 
 文章增删改查  
 文章发表  
 文章列表与详情  
-文章编辑与删除  
+文章编辑与删除
 
-[评论功能](/)
+[评论功能](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/comment.md)
 
-设计评论的模型 -- 参考[数据模型 - models](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/database.md)  
 发布评论  
 显示评论  
 删除评论
 
+[点赞点踩功能](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/likeOrDislike.md)
+
 [分页功能](/)
 
 MongoDB 分页原理  
-分页器的逻辑  
-
-[点赞点踩功能](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/likeOrDislike.md)
+分页器的逻辑

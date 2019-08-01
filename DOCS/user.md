@@ -1,6 +1,6 @@
 # 用户相关
 
-## 用户模型设计 -- 参考[数据模型 - models](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/database.md)
+## 用户模型设计 -- 参考[数据模型 - models](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/database.md/#用户模型)
 
 ## 用户登陆
 

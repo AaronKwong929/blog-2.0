@@ -99,18 +99,96 @@ lastLogin 记录用户上一次登陆的时间，每次登陆进行更改
 user.isModified('password');
 ```
 
-使用 bcrypt 重新加密密码，pre钩子记得加入next(); 防止一直抢占，最后exports模型
+使用 bcrypt 重新加密密码，pre 钩子记得加入 next(); 防止一直抢占，最后 exports 模型
 
 ```javascript
 module.exports = mongoose.model('User', userSchema);
 ```
 
-## 评论和文章模型不再赘述
+## 评论模型
+
+```javascript
+const mongoose = require('mongoose');
+
+const commentSchema = new mongoose.Schema({
+    articleID: {
+        type: String
+    },
+    author: {
+        type: String
+    },
+    content: {
+        type: String
+    },
+    createdAt: {
+        type: String,
+        default: new Date().toLocaleString()
+    },
+    updatedAt: {
+        type: String,
+        default: new Date().toLocaleString()
+    }
+});
+
+commentSchema.pre('save', async function(next) {
+    const comment = this;
+    const now = new Date().toLocaleString();
+    if (comment.updatedAt !== now) {
+        comment.updatedAt = now;
+    }
+    next();
+});
+
+module.exports = mongoose.model('Comments', commentSchema);
+```
+
+## 文章模型
+
+```javascript
+const mongoose = require('mongoose');
+
+const articleSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        trim: true,
+        required: true,
+        unique: true
+    },
+    author: {
+        type: String
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    type: {
+        type: String
+    },
+    createdAt: {
+        type: String,
+        default: new Date().toLocaleString()
+    },
+    updatedAt: {
+        type: String,
+        default: new Date().toLocaleString()
+    }
+});
+
+articleSchema.pre('save', async function(next) {
+    const article = this;
+    const now = new Date().toLocaleString();
+    if (article.updatedAt !== now) {
+        article.updatedAt = now;
+    }
+    next();
+});
+
+module.exports = mongoose.model('Article', articleSchema);
+```
 
 ## 点赞/点踩模型
 
 ```javascript
-
 const likesSchema = new mongoose.Schema({
     likes: {
         type: Number,
@@ -121,20 +199,20 @@ const likesSchema = new mongoose.Schema({
         default: 0
     },
     ArticleID: {
-        type: String,
+        type: String
     },
-    userIDs: [{
-        userID: {
-            type: String
+    userIDs: [
+        {
+            userID: {
+                type: String
+            }
         }
-    }],
+    ]
 });
 
 likesSchema.methods.findUser = async function(id) {
     const likesAndDislikes = this;
-    return likesAndDislikes.userIDs.find(
-        user => user.userID === id
-    );
+    return likesAndDislikes.userIDs.find(user => user.userID === id);
 };
 
 likesSchema.methods.like = async function(id) {
@@ -154,4 +232,4 @@ likesSchema.methods.dislike = async function(id) {
 module.exports = mongoose.model('Likes', likesSchema);
 ```
 
-### 实现思路：每一篇文章的的点赞点踩数均独立计算。用户操作后在这篇文章的表下加入操作用户的 _id，每一次加载文章时将获取当前session内的用户id，遍历该文章的点赞表内的userIDs，如果存在则渲染“您已操作”，否则渲染可操作的点赞模块
+### 实现思路：每一篇文章的的点赞点踩数均独立计算。用户操作后在这篇文章的表下加入操作用户的 \_id，每一次加载文章时将获取当前 session 内的用户 id，遍历该文章的点赞表内的 userIDs，如果存在则渲染“您已操作”，否则渲染可操作的点赞模块

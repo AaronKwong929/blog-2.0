@@ -1,6 +1,6 @@
 # 点赞点踩相关
 
-## [点赞模型设计](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/database.md/#点赞/点踩模型)
+## [点赞模型设计](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/database.md/#点赞点踩模型)
 
 ## 点赞->在 article.js 内编写
 
