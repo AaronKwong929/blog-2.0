@@ -77,7 +77,7 @@ const fn_readArticle = async ctx => {
 
 2. 先初始化 hasLikedOrDisliked 为空对象，不能用 const，后面还会对其有修改，不可以在 hasLikedOrDisliked = await likesAndDislikes.findUser(ctx.session.user.id);这里定义的原因：如果该用户没有对该文章进行点赞，返回的 hasLikedOrDisliked 传入渲染页将会报错
 
-3. 另外指路[点赞](/) 和 [评论](/)
+3. 另外指路[点赞](#) 和 [评论](#)
 
 ## 新建文章
 
@@ -137,6 +137,22 @@ const fn_deleteArticle = async ctx => {
 
 1. 需要管理员权限
 
-2. cascade删除没做好，需要分别在likes和comments删除
+2. cascade 删除没做好，需要分别在 likes 和 comments 删除
 
-## 修改文章与修改用户同思想 [修改用户](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/user.md/修改个人信息)
+## 修改文章与修改用户同思想 [修改用户](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/user.md/#修改个人信息)
+
+## 路由
+
+```javascript
+module.exports = {
+    'GET /articles': fn_articles,
+    'GET /articles/:id': fn_readArticle,
+    'GET /new': fn_newArticle,
+    'POST /new': fn_newArticle,
+    'GET /articles/:id/delete': fn_deleteArticle,
+    'GET /articles/:id/edit': fn_editArticle,
+    'POST /articles/:id/edit': fn_editArticle,
+    'GET /articles/:id/like': fn_like,
+    'GET /articles/:id/dislike': fn_dislike
+};
+```

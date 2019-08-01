@@ -31,8 +31,6 @@
 
 [静态资源 - statics](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/statics.md)
 
-[视图及组件 - views](https://github.com/AaronKwong929/blog-2.0/tree/master/DOCS/views)
-
 [编写过程中碰到的问题以及解决方案](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/Q%26A.md)
 
 [各种废案 - abolitions](https://github.com/AaronKwong929/blog-2.0/tree/master/Abolitions)
@@ -43,20 +41,13 @@
 用户登陆  
 用户注销  
 用户登录状态保持  
-用户权限控制
 
 [文章相关](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/article.md)
 
-文章模型设计 -- 参考[数据模型 - models](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/database.md)  
 文章增删改查  
 文章发表  
 文章列表与详情  
 文章编辑与删除  
-
-[用户权限控制]()
-
-登录状态检查  
-管理权限控制
 
 [评论功能](/)
 
@@ -69,3 +60,5 @@
 
 MongoDB 分页原理  
 分页器的逻辑  
+
+[点赞点踩功能](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/likeOrDislike.md)
