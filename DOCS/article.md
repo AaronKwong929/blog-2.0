@@ -77,8 +77,6 @@ const fn_readArticle = async ctx => {
 
 2. 先初始化 hasLikedOrDisliked 为空对象，不能用 const，后面还会对其有修改，不可以在 hasLikedOrDisliked = await likesAndDislikes.findUser(ctx.session.user.id);这里定义的原因：如果该用户没有对该文章进行点赞，返回的 hasLikedOrDisliked 传入渲染页将会报错
 
-3. 另外指路[点赞](#) 和 [评论](#)
-
 ## 新建文章
 
 ```javascript

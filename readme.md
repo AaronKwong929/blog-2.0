@@ -1,5 +1,7 @@
 # 基于 Koa.JS，MongoDB 实现的个人博客系统 2.0
 
+## vue.js + koa.js前后端分离的个人博客系统即将上线...?
+
 ## 项目目录
 
 ---
@@ -41,27 +43,10 @@
 
 [用户相关](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/user.md)
 
-用户注册  
-用户登陆  
-用户注销  
-用户登录状态保持
-
 [文章相关](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/article.md)
-
-文章增删改查  
-文章发表  
-文章列表与详情  
-文章编辑与删除
 
 [评论功能](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/comment.md)
 
-发布评论  
-显示评论  
-删除评论
-
 [点赞点踩功能](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/likeOrDislike.md)
 
-[分页功能](/)
-
-MongoDB 分页原理  
-分页器的逻辑
+[分页功能](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/pagination.md)
