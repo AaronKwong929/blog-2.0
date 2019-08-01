@@ -37,16 +37,15 @@
 
 [各种废案 - abolitions](https://github.com/AaronKwong929/blog-2.0/tree/master/Abolitions)
 
-[用户注册与登录](/)
-
-用户模型设计 -- 参考[数据模型 - models](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/database.md)  
+[用户相关](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/user.md)
+  
 用户注册  
 用户登陆  
 用户注销  
 用户登录状态保持  
 用户权限控制
 
-[文章相关](/)
+[文章相关](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/article.md)
 
 文章模型设计 -- 参考[数据模型 - models](https://github.com/AaronKwong929/blog-2.0/blob/master/DOCS/database.md)  
 文章增删改查  
