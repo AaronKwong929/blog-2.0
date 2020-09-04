@@ -12,7 +12,7 @@
         "koa-router": "^7.4.0",
         "koa-session": "^5.11.0",
         "koa-views": "^6.2.0",
-        "marked": "^0.6.2",
+        "marked": "^1.1.1",
         "mime": "^2.4.2",
         "mongodb": "^3.2.6",
         "mongoose": "^5.5.11",
